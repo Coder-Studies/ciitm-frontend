@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import H4 from '../../../Atoms/Heading/H4';
 import { MdEditSquare } from 'react-icons/md';
 import Input_Primary from '../../../Atoms/Input/Input_Primary';
 import {
-   addInput,
    setInputValueByIndex,
-   setInputValueByName,
 } from '../../../../store/InputSlice';
 import { useDispatch, useSelector } from 'react-redux';
 

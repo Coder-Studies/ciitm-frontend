@@ -1,7 +1,6 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { setUser } from '../../store/AuthSlice';
 
 import { FcGoogle } from 'react-icons/fc';
@@ -10,7 +9,6 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 
 const Google = ({ text }) => {
-   let user = useSelector(state => state.auth.user);
 
    let dispatch = useDispatch();
 
