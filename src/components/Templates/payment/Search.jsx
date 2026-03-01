@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { setPayment_Info } from '../../../store/PaymentSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import ValidateUniqueIdInput from '../../Atoms/Input/ValidateUniqueIdInput';
-import { ToastContainer, toast } from 'react-toastify';
-import { set } from 'react-hook-form';
 
 const Search = () => {
    const dispatch = useDispatch();

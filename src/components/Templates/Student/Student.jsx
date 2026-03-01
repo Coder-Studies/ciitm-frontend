@@ -14,7 +14,7 @@ const Student = () => {
          <img
             src={find_User.picture}
             alt=''
-            srcset=''
+            srcSet=''
             className='w-[20vw] h-[41vh]'
          />
          <h1 className='text-white'>Student</h1>
