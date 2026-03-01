@@ -76,4 +76,5 @@ const ContactPage = memo(() => {
    );
 });
 
+ContactPage.displayName = 'ContactPage';
 export default ContactPage;

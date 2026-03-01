@@ -80,4 +80,5 @@ const ProfilePage = memo(() => {
    );
 });
 
+ProfilePage.displayName = 'ProfilePage';
 export default ProfilePage;

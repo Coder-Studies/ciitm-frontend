@@ -2,6 +2,7 @@ import Form from './Form';
 import BankAccounts from './BankAccounts';
 import Search from './Search';
 import Payment from './Payment';
+import PropTypes from 'prop-types';
 
 const TitleContainer = ({
    title,
@@ -9,7 +10,6 @@ const TitleContainer = ({
    amount,
    bank,
    pay,
-   total,
    width,
    details,
 }) => {
@@ -30,6 +30,16 @@ const TitleContainer = ({
          {bank && <BankAccounts />}
       </div>
    );
+   
+};
+   TitleContainer.propTypes = {
+   title: PropTypes.string.isRequired,
+   form: PropTypes.bool,
+   amount: PropTypes.bool,
+   bank: PropTypes.bool,
+   pay: PropTypes.bool,
+   width: PropTypes.bool,
+   details: PropTypes.object,
 };
 
 export default TitleContainer;
