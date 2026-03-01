@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import ValidateUniqueIdInput from '../components/Atoms/Input/ValidateUniqueIdInput';
-import axios from 'axios';
 import Swal from 'sweetalert2';
 
 const StatusPage = () => {

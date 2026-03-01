@@ -1,4 +1,3 @@
-import React from 'react';
 import Form from './Form';
 import BankAccounts from './BankAccounts';
 import Search from './Search';

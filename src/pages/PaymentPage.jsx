@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react';
+import  { memo, useEffect, useState } from 'react';
 import TitleContainer from '../components/Templates/payment/TitleContainer';
 import Summary from '../components/Templates/payment/Summary';
 import { useSelector } from 'react-redux';

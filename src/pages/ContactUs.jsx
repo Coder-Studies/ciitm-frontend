@@ -1,5 +1,3 @@
-import Swal from 'sweetalert2';
-import axios from 'axios';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
@@ -41,7 +39,6 @@ const ContactUs = () => {
    const {
       register,
       watch,
-      reset,
       formState: { errors },
    } = useForm({
       resolver: yupResolver(Form_schema),

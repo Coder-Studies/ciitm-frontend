@@ -4,7 +4,6 @@ import FormTemplate from '../../components/Templates/Admin/form/FormTemplate';
 import Dropdown_Primary from '../../components/Atoms/Dropdown/Dropdown_Primary';
 import StudentDataTable from '../../components/Organisms/Admin/StudentDataTable';
 import axios from 'axios';
-import { set } from 'react-hook-form';
 
 const studentOptions = [
    'Bachelor of Computer Applications (BCA)',

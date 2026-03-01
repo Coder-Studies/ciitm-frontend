@@ -7,9 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { Admin_get_ContactData_EndPoint } from '../../utils/constants';
 import { setContact } from '../../store/AdminUi';
-import Swal from 'sweetalert2';
 import AdminContactData_Table from '../../components/Organisms/Admin/AdminContactData_Table';
-import { setNavigator } from '../../store/NavigatorSlice';
 
 const ContactPage = memo(() => {
    let dispatch = useDispatch();

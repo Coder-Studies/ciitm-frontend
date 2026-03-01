@@ -7,7 +7,6 @@ import Testimonials from '../components/Templates/home/Testimonials';
 import useHomeUi from '../hooks/useHomeUi';
 import { useSelector } from 'react-redux';
 import Loader from '../components/Molecules/Loader/Loader';
-import { useEffect } from 'react';
 
 function Home() {
    let data = useSelector(state => state.home.landingPage);

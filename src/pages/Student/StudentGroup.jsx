@@ -1,17 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import StudentTemplate from '../../components/Templates/Admin/StudentTemplate';
-import { IoIosAddCircle } from 'react-icons/io';
 import { IoSend } from 'react-icons/io5';
 import { FaRobot } from 'react-icons/fa6';
 import { MdAttachFile, MdEmojiEmotions } from 'react-icons/md';
-import {
-   BsEmojiSmile,
-   BsEmojiHeartEyes,
-   BsEmojiLaughing,
-   BsEmojiWink,
-   BsEmojiFrown,
-   BsEmojiAngry,
-} from 'react-icons/bs';
 import socket from '../../config/socket.mjs';
 import { useSelector } from 'react-redux';
 import { toast, ToastContainer } from 'react-toastify';
@@ -22,7 +13,6 @@ const StudentGroup = () => {
    const [isAi, setIsAi] = useState(false);
    const [inputValue, setInputValue] = useState('');
    const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-   const [showFileUpload, setShowFileUpload] = useState(false);
    const [selectedFile, setSelectedFile] = useState(null);
    const fileInputRef = useRef(null);
    const [messages, setMessages] = useState([]);
@@ -77,7 +67,6 @@ const StudentGroup = () => {
          }
 
          setSelectedFile(file);
-         setShowFileUpload(false);
 
          // Add file info to input
          setInputValue(prev => prev + ` 📎 ${file.name}`);
@@ -181,7 +170,6 @@ const StudentGroup = () => {
       setSelectedFile(null);
       setIsAi(false);
       setShowEmojiPicker(false);
-      setShowFileUpload(false);
    };
 
    console.log('Messages:', messages);

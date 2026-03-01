@@ -1,5 +1,3 @@
-import React from 'react';
-
 import AdmissionForm from '../components/Templates/admission/AdmissionForm';
 
 const Admission = () => {
