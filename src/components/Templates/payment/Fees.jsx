@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
 const Fees = ({ fee }) => {
    return (
@@ -7,6 +7,13 @@ const Fees = ({ fee }) => {
          <p className='font-light'>₹ {fee.amount}</p>
       </div>
    );
+};
+
+Fees.propTypes = {
+   fee: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      amount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+   }).isRequired,
 };
 
 export default Fees;

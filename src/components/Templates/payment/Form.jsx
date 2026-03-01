@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Input from './Input';
 
 const Form = ({ details }) => {
@@ -15,6 +15,17 @@ const Form = ({ details }) => {
          ))}
       </div>
    );
+};
+
+Form.propTypes = {
+   details: PropTypes.arrayOf(
+      PropTypes.shape({
+         Name: PropTypes.string.isRequired,
+         Value: PropTypes.string,
+         Placeholder: PropTypes.string,
+         Label: PropTypes.string,
+      })
+   ).isRequired,
 };
 
 export default Form;

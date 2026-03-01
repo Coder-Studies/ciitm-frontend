@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import useAlbum from '../../../hooks/useAlbum';
@@ -9,9 +8,7 @@ import AlbumPrimaryCard from '../../Molecules/Cards/Album/AlbumPrimaryCard';
 
 const Album = () => {
    const [albums, setAlbums] = useState([]);
-   const [error, setError] = useState(false);
    const [userRole, setUserRole] = useState('');
-   const [isClick, setIsClick] = useState(false);
 
    const dispatch = useDispatch();
    const user = useSelector(state => state.auth.user);
@@ -57,11 +54,7 @@ const Album = () => {
    return (
       <div className='w-full h-auto md:h-screen px-[3vw] py-5 flex items-center justify-between flex-col md:flex-row'>
          <div className='md:w-[55vw] md:h-[62vh] w-full sm:h-full grid grid-rows-2 grid-cols-2 md:grid-cols-3 gap-[3vw] md:gap-[1.5vw] place-items-center'>
-            {error ? (
-               <h1 className='text-2xl text-center'>
-                  No Data From Backend
-               </h1>
-            ) : albums.length === 0 ? (
+            {albums.length === 0 ? (
                <h1 className='text-2xl text-center'>
                   Album Not Found
                </h1>

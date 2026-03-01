@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import NoticeCard from '../../Molecules/Cards/NoticeCard';
 import Loader from '../../Molecules/Loader/Loader';
-import H3 from '../../Atoms/Heading/H3';
 import P3 from '../../Atoms/Paragraph/P3';
 import H1 from '../../Atoms/Heading/H1';
 
@@ -55,4 +54,5 @@ const Hero = React.memo(() => {
    );
 });
 
+Hero.displayName = 'Hero';
 export default Hero;

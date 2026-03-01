@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Fees from './Fees';
+import PropTypes from 'prop-types';
 
 const Summary = ({ heading, duration, feesList, description }) => {
    const [isVisible, setisVisible] = useState(false);
@@ -62,6 +63,17 @@ const Summary = ({ heading, duration, feesList, description }) => {
          </div>
       </div>
    );
+};
+
+Summary.propTypes = {
+   heading: PropTypes.string.isRequired,
+   duration: PropTypes.string.isRequired,
+   description: PropTypes.string,
+   feesList: PropTypes.arrayOf(
+      PropTypes.shape({
+         id: PropTypes.string.isRequired,
+      })
+   ).isRequired,
 };
 
 export default Summary;
