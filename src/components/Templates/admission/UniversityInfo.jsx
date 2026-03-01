@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import InputField from './InputField';
+import PropTypes from 'prop-types';
 import Dropdown from './DropDown';
 import socket from '../../../config/socket.mjs';
 
@@ -48,8 +48,6 @@ const UniversityInfo = ({ handleInputChange }) => {
             onChange={handleInputChange}
          />
 
-         {/* mode */}
-
          <Dropdown
             placeholder='Select Mode'
             name='mode'
@@ -59,6 +57,10 @@ const UniversityInfo = ({ handleInputChange }) => {
          />
       </div>
    );
+};
+
+UniversityInfo.propTypes = {
+   handleInputChange: PropTypes.func.isRequired,
 };
 
 export default UniversityInfo;

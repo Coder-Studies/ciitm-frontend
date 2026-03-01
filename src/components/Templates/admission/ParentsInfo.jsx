@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import InputField from './InputField';
 import Dropdown from './DropDown';
 
 const ParentsInfo = ({ handleInputChange }) => {
-   const [activeBox, setActiveBox] = useState(null);
-
    return (
       <div className='sm:grid flex flex-col w-full 2xl:grid-cols-5 sm:grid-cols-2 md:grid-cols-4 sm:gap-x-4 gap-y-10'>
          <InputField
@@ -30,6 +28,10 @@ const ParentsInfo = ({ handleInputChange }) => {
          />
       </div>
    );
+};
+
+ParentsInfo.propTypes = {
+   handleInputChange: PropTypes.func.isRequired,
 };
 
 export default ParentsInfo;

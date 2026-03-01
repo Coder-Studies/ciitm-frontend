@@ -1,4 +1,4 @@
-import React, { memo, Suspense, useState } from 'react';
+import { memo, Suspense, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
@@ -38,6 +38,8 @@ const CourseCard = memo(({ data }) => {
       </div>
    );
 });
+
+CourseCard.displayName = 'CourseCard';
 
 const Courses = () => {
    let [Error, setError] = useState(null);
@@ -161,5 +163,7 @@ const Courses = () => {
       </Suspense>
    );
 };
+
+Courses.displayName = 'Courses';
 
 export default Courses;

@@ -16,4 +16,5 @@ const GalleryCard = ({ url }) => {
 GalleryCard.propTypes = {
    url: PropTypes.string.isRequired,
 };
+
 export default GalleryCard;
