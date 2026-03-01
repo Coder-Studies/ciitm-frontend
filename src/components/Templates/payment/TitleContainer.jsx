@@ -30,9 +30,8 @@ const TitleContainer = ({
          {bank && <BankAccounts />}
       </div>
    );
-   
 };
-   TitleContainer.propTypes = {
+TitleContainer.propTypes = {
    title: PropTypes.string.isRequired,
    form: PropTypes.bool,
    amount: PropTypes.bool,

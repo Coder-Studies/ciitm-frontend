@@ -2,9 +2,7 @@ import { useEffect, useState } from 'react';
 import H4 from '../../../Atoms/Heading/H4';
 import { MdEditSquare } from 'react-icons/md';
 import Input_Primary from '../../../Atoms/Input/Input_Primary';
-import {
-   setInputValueByIndex,
-} from '../../../../store/InputSlice';
+import { setInputValueByIndex } from '../../../../store/InputSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 const AdminProfile_Title = () => {

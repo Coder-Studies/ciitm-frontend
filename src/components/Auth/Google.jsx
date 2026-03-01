@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setUser } from '../../store/AuthSlice';
 
 import { FcGoogle } from 'react-icons/fc';
@@ -9,7 +9,6 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 
 const Google = ({ text }) => {
-
    let dispatch = useDispatch();
 
    const login = useGoogleLogin({

@@ -7,13 +7,10 @@ import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import App from './App';
 
-
-
-
 createRoot(document.getElementById('root')).render(
    <StrictMode>
       <Provider store={appStore}>
-        <App />
+         <App />
          <ToastContainer
             position='top-right'
             autoClose={3000}

@@ -1,4 +1,3 @@
-
 import History from '../components/Templates/about/History';
 import AboutHero from '../components/Templates/about/AboutHero';
 import Teachers from '../components/Templates/about/Teachers';

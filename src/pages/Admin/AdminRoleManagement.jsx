@@ -102,7 +102,9 @@ const AdminRoleManagement = () => {
          Swal.fire({
             icon: 'success',
             title: 'Success',
-            text: res.data.message || 'Admin role assigned successfully!',
+            text:
+               res.data.message ||
+               'Admin role assigned successfully!',
             confirmButtonText: 'OK',
          });
 
@@ -170,7 +172,9 @@ const AdminRoleManagement = () => {
          Swal.fire({
             icon: 'success',
             title: 'Success',
-            text: res.data.message || 'Admin access revoked successfully!',
+            text:
+               res.data.message ||
+               'Admin access revoked successfully!',
             confirmButtonText: 'OK',
          });
 
@@ -197,7 +201,7 @@ const AdminRoleManagement = () => {
          <title>Admin Role Management</title>
          <meta
             name='description'
-            content="CIITM Admin Role Management - Manage admin access and permissions."
+            content='CIITM Admin Role Management - Manage admin access and permissions.'
          />
 
          <AdminTemplate pageName='Admin Role Management'>
@@ -232,7 +236,9 @@ const AdminRoleManagement = () => {
                      </div>
 
                      {error && (
-                        <p className='text-red-500 text-sm w-full'>{error}</p>
+                        <p className='text-red-500 text-sm w-full'>
+                           {error}
+                        </p>
                      )}
 
                      <button
@@ -250,7 +256,9 @@ const AdminRoleManagement = () => {
                   w-full md:w-auto
                 '
                      >
-                        {isLoading ? 'Assigning...' : 'Assign Admin Role'}
+                        {isLoading
+                           ? 'Assigning...'
+                           : 'Assign Admin Role'}
                      </button>
                   </form>
                </FormTemplate_Secondary>
@@ -318,14 +326,17 @@ const AdminRoleManagement = () => {
                                           </span>
                                        </td>
                                        <td className='border border-[#322F2F] px-4 py-3 text-center'>
-                                          {admin.email === currentUserEmail ? (
+                                          {admin.email ===
+                                          currentUserEmail ? (
                                              <span className='text-gray-400 text-sm'>
                                                 Current User
                                              </span>
                                           ) : (
                                              <button
                                                 onClick={() =>
-                                                   handleDeleteAdmin(admin.email)
+                                                   handleDeleteAdmin(
+                                                      admin.email,
+                                                   )
                                                 }
                                                 disabled={isLoading}
                                                 className='
@@ -355,4 +366,3 @@ const AdminRoleManagement = () => {
 };
 
 export default AdminRoleManagement;
-

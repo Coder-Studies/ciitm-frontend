@@ -136,7 +136,9 @@ const PaymentPage = memo(function PaymentPage() {
             <Summary
                heading={Course?.courseName || 'Course Name'}
                duration={Course?.courseDuration || 'Duration'}
-               description={Course?.courseDescription || 'Description'}
+               description={
+                  Course?.courseDescription || 'Description'
+               }
                feesList={feesList}
             />
          </div>

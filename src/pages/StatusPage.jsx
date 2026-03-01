@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import ValidateUniqueIdInput from '../components/Atoms/Input/ValidateUniqueIdInput';
 import Swal from 'sweetalert2';
 
