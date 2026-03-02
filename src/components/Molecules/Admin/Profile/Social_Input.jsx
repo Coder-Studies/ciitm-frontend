@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import Input_Primary from '../../../Atoms/Input/Input_Primary';
 
 const Social_Input = ({
@@ -28,6 +29,14 @@ const Social_Input = ({
          </div>
       </div>
    );
+};
+
+Social_Input.propTypes = {
+   Icon: PropTypes.node.isRequired,
+   LinkUrl: PropTypes.string,
+   PlaceHolder: PropTypes.string,
+   ReadOnly: PropTypes.bool,
+   Name: PropTypes.string.isRequired,
 };
 
 export default Social_Input;

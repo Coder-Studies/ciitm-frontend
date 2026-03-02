@@ -1,4 +1,3 @@
-import React from 'react';
 import UniversityInfoInputs from '../../../Organisms/Admin/UniversityInfoInputs';
 
 const StudentUniversityInfo = ({ data = {} }) => {

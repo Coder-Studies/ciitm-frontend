@@ -1,4 +1,3 @@
-import React from 'react';
 import StudentParent_Inputs from '../../../Organisms/Admin/StudentParent_Inputs';
 
 const StudentParentInfo = ({ data = {} }) => {

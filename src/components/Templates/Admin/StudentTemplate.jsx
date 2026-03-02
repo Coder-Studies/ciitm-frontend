@@ -1,4 +1,3 @@
-import React from 'react';
 import Student_NavBar from '../../Organisms/NavBar/Student/Student_NavBar';
 import Student_SideBar from '../../Organisms/NavBar/Student/Student_SideBar';
 
