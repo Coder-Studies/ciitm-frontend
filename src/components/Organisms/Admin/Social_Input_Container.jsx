@@ -1,4 +1,3 @@
-import React from 'react';
 import Social_Input from '../../Molecules/Admin/Profile/Social_Input';
 import H3 from '../../Atoms/Heading/H3';
 

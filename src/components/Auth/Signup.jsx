@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Google_Wrapper from './Google_Wrapper';
 import Input from './Input';
@@ -13,7 +13,7 @@ import { setUser } from '../../store/AuthSlice';
 
 const Signup = () => {
    let dispatch = useDispatch();
-   let [isLoading, setIsLoading] = React.useState(false);
+   let [isLoading, setIsLoading] = useState(false);
 
    let First_Name = useSelector(state =>
       state.auth.data.find(item => item.name === 'firstName'),

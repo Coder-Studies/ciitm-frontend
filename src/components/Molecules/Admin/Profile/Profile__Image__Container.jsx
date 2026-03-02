@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Circle_Image from '../../../Atoms/Image/Circle_Image';
 import PropTypes from 'prop-types';
 

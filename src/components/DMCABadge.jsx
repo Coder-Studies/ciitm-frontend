@@ -1,5 +1,5 @@
 // Drop-in React component for DMCA.com Protection Badge
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const DMCABadge = ({
    size = 'medium',

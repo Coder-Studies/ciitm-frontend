@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { memo } from 'react';
 import AdminDashBoard_CardPrimary from './AdminDashBoard_CardPrimary';
 import Loader from 'react-spinners/ClockLoader';
 
@@ -51,5 +51,7 @@ const DashboardCardSection = memo(({ Cards = [] }) => {
       </div>
    );
 });
+
+DashboardCardSection.displayName = 'DashboardCardSection';
 
 export default DashboardCardSection;

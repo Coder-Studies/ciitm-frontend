@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import Circle_Image from '../../Atoms/Image/Circle_Image';
-import P2 from '../../Atoms/Paragraph/P2';
 import P3 from '../../Atoms/Paragraph/P3';
 import { Link } from 'react-router-dom';
 

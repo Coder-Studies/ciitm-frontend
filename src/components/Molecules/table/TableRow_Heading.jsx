@@ -1,4 +1,3 @@
-import React from 'react';
 import TableRow from '../../Atoms/Table/Tr/TableRow';
 import TableHeading from '../../Atoms/Table/Th/TableHeading';
 import PropTypes from 'prop-types';

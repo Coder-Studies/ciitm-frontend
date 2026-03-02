@@ -1,4 +1,3 @@
-import React from 'react';
 import TableRow from '../../Atoms/Table/Tr/TableRow';
 import TableData from '../../Atoms/Table/Td/TableData';
 import { Link } from 'react-router-dom';

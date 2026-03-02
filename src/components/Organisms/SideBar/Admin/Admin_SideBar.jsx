@@ -1,9 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { BiHomeSmile } from 'react-icons/bi';
 import { TbPigMoney } from 'react-icons/tb';
-import { SiCoursera } from 'react-icons/si';
 import { FaImage } from 'react-icons/fa';
 import { GoBellFill } from 'react-icons/go';
 import { PiStudentBold } from 'react-icons/pi';
