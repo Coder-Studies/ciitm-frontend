@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
 const Circle_Image = ({ src, alt, fn }) => {
    return (
@@ -11,6 +11,12 @@ const Circle_Image = ({ src, alt, fn }) => {
          />
       </div>
    );
+};
+
+Circle_Image.propTypes = {
+   src: PropTypes.string.isRequired,
+   alt: PropTypes.string.isRequired,
+   fn: PropTypes.func,
 };
 
 export default Circle_Image;
