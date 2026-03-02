@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from 'react';
+import { memo, useEffect, useState,useCallback } from 'react';
 
 import AdminTemplate from '../../components/Templates/Admin/AdminTemplate';
 import FormTemplate from '../../components/Templates/Admin/form/FormTemplate';
@@ -26,27 +26,31 @@ const ContactPage = memo(() => {
 
    const [contactData, setContactData] = useState([]);
 
-   const GetContactData = async () => {
-      try {
-         setIsError(false);
-         const res = await axios.get(
-            Admin_get_ContactData_EndPoint +
-               `?perPage=${findNavigator.parPage}&limit=${findNavigator.limit}`,
-         );
+const GetContactData = useCallback(async () => {
+   if (!findNavigator) return;
 
-         setContactData(res.data.data);
+   try {
+      setIsError(false);
+      setIsLoading(true);
 
-         dispatch(setContact(res.data.data));
-      } catch (error) {
-         setIsError(true);
-         setMessage(error.response.data.message);
-         setIsLoading(false);
-      }
-   };
+      const res = await axios.get(
+         Admin_get_ContactData_EndPoint +
+            `?perPage=${findNavigator.parPage}&limit=${findNavigator.limit}`,
+      );
 
-   useEffect(() => {
-      GetContactData();
-   }, [findNavigator.limit, findNavigator.parPage]);
+      setContactData(res.data.data);
+      dispatch(setContact(res.data.data));
+   } catch (error) {
+      setIsError(true);
+      setMessage(error?.response?.data?.message || 'Something went wrong');
+   } finally {
+      setIsLoading(false);
+   }
+}, [findNavigator, dispatch]);
+
+useEffect(() => {
+   GetContactData();
+}, [GetContactData]);
 
    return (
       <>
