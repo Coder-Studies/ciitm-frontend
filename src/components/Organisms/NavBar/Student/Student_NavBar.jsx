@@ -1,4 +1,3 @@
-
 const Student_NavBar = () => {
    return (
       <div className='h-[7vh] w-screen bg-white border-b-2 flex items-center justify-between px-6 shadow-md print:hidden '>

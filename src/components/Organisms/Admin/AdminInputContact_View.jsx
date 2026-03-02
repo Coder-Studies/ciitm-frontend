@@ -1,4 +1,3 @@
-
 import Contact_view from '../../Molecules/Admin/Contact/Contact_view';
 
 const AdminInputContact_View = ({ data }) => {

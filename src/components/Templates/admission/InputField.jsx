@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { setAdmission, setOneAdmission } from '../../../store/AdmissionSlice';
+import {
+   setAdmission,
+   setOneAdmission,
+} from '../../../store/AdmissionSlice';
 
 const InputField = ({ placeholder, type, name, required }) => {
-const admission = useSelector(state => state.admission.admission);
+   const admission = useSelector(state => state.admission.admission);
    const dispatch = useDispatch();
 
    const [value, setValue] = useState('');
@@ -12,12 +15,14 @@ const admission = useSelector(state => state.admission.admission);
 
    const findIndex = admission.findIndex(item => item.name === name);
 
-useEffect(() => {
-   const next = admission[findIndex]?.value ?? '';
-   setValue(prev => (prev === next ? prev : next));
-}, [admission, findIndex]);
+   useEffect(() => {
+      const next = admission[findIndex]?.value ?? '';
+      setValue(prev => (prev === next ? prev : next));
+   }, [admission, findIndex]);
 
-   const nameAndId = (placeholder || '').replace(/\s+/g, '').toLowerCase();
+   const nameAndId = (placeholder || '')
+      .replace(/\s+/g, '')
+      .toLowerCase();
 
    const handleChange = e => {
       setValue(e.target.value);

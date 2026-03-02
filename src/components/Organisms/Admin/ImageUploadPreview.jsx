@@ -38,7 +38,7 @@ const ImageUploadPreview = ({
          )}
       </div>
    );
-}
+};
 
 ImageUploadPreview.propTypes = {
    fileRef: PropTypes.shape({

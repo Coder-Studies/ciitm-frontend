@@ -12,7 +12,10 @@ const Fees = ({ fee }) => {
 Fees.propTypes = {
    fee: PropTypes.shape({
       name: PropTypes.string.isRequired,
-      amount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      amount: PropTypes.oneOfType([
+         PropTypes.string,
+         PropTypes.number,
+      ]).isRequired,
    }).isRequired,
 };
 

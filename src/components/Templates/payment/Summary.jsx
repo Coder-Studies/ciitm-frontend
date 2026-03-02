@@ -72,7 +72,7 @@ Summary.propTypes = {
    feesList: PropTypes.arrayOf(
       PropTypes.shape({
          id: PropTypes.string.isRequired,
-      })
+      }),
    ).isRequired,
 };
 

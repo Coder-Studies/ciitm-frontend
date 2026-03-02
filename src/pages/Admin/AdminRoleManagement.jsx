@@ -1,4 +1,4 @@
-import { useState, useEffect,useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import AdminTemplate from '../../components/Templates/Admin/AdminTemplate';
 import FormTemplate_Secondary from '../../components/Templates/Admin/form/FormTemplate_Secondary';
 import Input_Primary from '../../components/Atoms/Input/Input_Primary';
@@ -32,33 +32,33 @@ const AdminRoleManagement = () => {
 
    const currentUserEmail = user?.email;
 
-const fetchAdmins = useCallback(async () => {
-   try {
-      setIsLoadingAdmins(true);
-      setError('');
-      const token = user?.token || localStorage.getItem('token');
+   const fetchAdmins = useCallback(async () => {
+      try {
+         setIsLoadingAdmins(true);
+         setError('');
+         const token = user?.token || localStorage.getItem('token');
 
-      const res = await axios.get(Get_All_Admins_EndPoint, {
-         headers: { Authorization: `Bearer ${token}` },
-      });
+         const res = await axios.get(Get_All_Admins_EndPoint, {
+            headers: { Authorization: `Bearer ${token}` },
+         });
 
-      setAdmins(res.data.data || res.data || []);
-   } catch (err) {
-      const msg =
-         err?.response?.data?.message ||
-         err.message ||
-         'Failed to fetch admins';
+         setAdmins(res.data.data || res.data || []);
+      } catch (err) {
+         const msg =
+            err?.response?.data?.message ||
+            err.message ||
+            'Failed to fetch admins';
 
-      setError(msg);
-      Swal.fire({ icon: 'error', title: 'Error', text: msg });
-   } finally {
-      setIsLoadingAdmins(false);
-   }
-}, [user?.token]);
+         setError(msg);
+         Swal.fire({ icon: 'error', title: 'Error', text: msg });
+      } finally {
+         setIsLoadingAdmins(false);
+      }
+   }, [user?.token]);
 
-useEffect(() => {
-   fetchAdmins();
-}, [fetchAdmins]);
+   useEffect(() => {
+      fetchAdmins();
+   }, [fetchAdmins]);
 
    const handleAssignAdmin = async e => {
       e.preventDefault();

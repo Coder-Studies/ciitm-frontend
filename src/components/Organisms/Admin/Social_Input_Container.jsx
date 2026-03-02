@@ -29,7 +29,7 @@ Social_Input_Container.propTypes = {
          LinkUrl: PropTypes.string.isRequired,
          PlaceHolder: PropTypes.string,
          ReadOnly: PropTypes.bool,
-      })
+      }),
    ),
 };
 

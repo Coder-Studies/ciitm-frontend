@@ -24,7 +24,7 @@ Form.propTypes = {
          Value: PropTypes.string,
          Placeholder: PropTypes.string,
          Label: PropTypes.string,
-      })
+      }),
    ).isRequired,
 };
 

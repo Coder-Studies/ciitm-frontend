@@ -1,6 +1,7 @@
 import TableRow from '../../Atoms/Table/Tr/TableRow';
 import TableData from '../../Atoms/Table/Td/TableData';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const EarningData = ({ earnings }) => {
    return (
@@ -51,6 +52,20 @@ const EarningData = ({ earnings }) => {
          </div>
       )
    );
+};
+
+EarningData.propTypes = {
+   earnings: PropTypes.arrayOf(
+      PropTypes.shape({
+         _id: PropTypes.string.isRequired,
+         paymentDate: PropTypes.string.isRequired,
+         studentName: PropTypes.string.isRequired,
+         paymentType: PropTypes.string.isRequired,
+         amount: PropTypes.number.isRequired,
+         status: PropTypes.string.isRequired,
+         Payment_id: PropTypes.string.isRequired,
+      }),
+   ).isRequired,
 };
 
 export default EarningData;

@@ -1,4 +1,5 @@
 import Input_Primary from '../../Atoms/Input/Input_Primary';
+import PropTypes from 'prop-types';
 
 const GradeInputs = ({
    TenthBoardName = '',
@@ -74,6 +75,13 @@ const GradeInputs = ({
          </div>
       </div>
    );
+};
+
+GradeInputs.propTypes = {
+   TenthBoardName: PropTypes.string,
+   TenthMarks: PropTypes.string,
+   TwelfthBoardName: PropTypes.string,
+   TwelfthMarks: PropTypes.string,
 };
 
 export default GradeInputs;

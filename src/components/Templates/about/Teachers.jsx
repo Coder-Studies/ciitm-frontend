@@ -149,7 +149,10 @@ TeacherCard.propTypes = {
       name: PropTypes.string,
       position: PropTypes.string,
       Specialization: PropTypes.string,
-      Experience: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      Experience: PropTypes.oneOfType([
+         PropTypes.string,
+         PropTypes.number,
+      ]),
       role: PropTypes.string,
       social_media: PropTypes.arrayOf(
          PropTypes.shape({

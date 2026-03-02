@@ -61,9 +61,18 @@ const CourseFeeInfoInputs = ({
 };
 
 CourseFeeInfoInputs.propTypes = {
-   totalCourseFee: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-   totalAmountPaid: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-   totalAmountDue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+   totalCourseFee: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+   ]),
+   totalAmountPaid: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+   ]),
+   totalAmountDue: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+   ]),
 };
 
 export default CourseFeeInfoInputs;

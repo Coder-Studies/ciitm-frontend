@@ -1,7 +1,10 @@
 import { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { setAdmission, setOneAdmission } from '../../../store/AdmissionSlice';
+import {
+   setAdmission,
+   setOneAdmission,
+} from '../../../store/AdmissionSlice';
 
 const Dropdown = ({
    placeholder,
@@ -17,21 +20,31 @@ const Dropdown = ({
    const dropdownRef = useRef(null);
 
    const findIndex = admission.findIndex(item => item.name === name);
-   const reduxValue = findIndex !== -1 ? admission[findIndex]?.value : undefined;
+   const reduxValue =
+      findIndex !== -1 ? admission[findIndex]?.value : undefined;
 
-   const [selectedOption, setSelectedOption] = useState(reduxValue ?? placeholder);
+   const [selectedOption, setSelectedOption] = useState(
+      reduxValue ?? placeholder,
+   );
    const [isOpen, setIsOpen] = useState(false);
    const [isError, setIsError] = useState(false);
 
    useEffect(() => {
       const handleClickOutside = event => {
-         if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+         if (
+            dropdownRef.current &&
+            !dropdownRef.current.contains(event.target)
+         ) {
             setIsOpen(false);
          }
       };
 
       document.addEventListener('mousedown', handleClickOutside);
-      return () => document.removeEventListener('mousedown', handleClickOutside);
+      return () =>
+         document.removeEventListener(
+            'mousedown',
+            handleClickOutside,
+         );
    }, []);
 
    useEffect(() => {
@@ -63,7 +76,10 @@ const Dropdown = ({
    const handleBlur = () => validateDropdown(selectedOption);
 
    return (
-      <div className='relative min-[630px]:max-w-[248px] w-full' ref={dropdownRef}>
+      <div
+         className='relative min-[630px]:max-w-[248px] w-full'
+         ref={dropdownRef}
+      >
          <div
             tabIndex={0}
             onClick={() => setIsOpen(prev => !prev)}
@@ -97,13 +113,15 @@ const Dropdown = ({
                {options.map((option, index) => (
                   <div
                      key={`${option}-${index}`}
-                     onMouseDown={e => e.preventDefault()} 
+                     onMouseDown={e => e.preventDefault()}
                      onClick={() => handleOptionClick(option)}
                      className='flex items-center gap-2 px-4 py-3 text-xs text-[#333333] cursor-pointer hover:bg-[#FAFAFA]'
                   >
                      <div
                         className={`w-4 h-4 border-2 bg-white rounded-full flex items-center justify-center ${
-                           selectedOption === option ? 'border-[#333333]' : 'border-gray-400'
+                           selectedOption === option
+                              ? 'border-[#333333]'
+                              : 'border-gray-400'
                         }`}
                      >
                         {selectedOption === option && (
@@ -116,7 +134,11 @@ const Dropdown = ({
             </div>
          )}
 
-         {isError && <p className='text-red-500 text-xs mt-1'>{errorMessage}</p>}
+         {isError && (
+            <p className='text-red-500 text-xs mt-1'>
+               {errorMessage}
+            </p>
+         )}
       </div>
    );
 };
@@ -124,7 +146,7 @@ const Dropdown = ({
 Dropdown.propTypes = {
    placeholder: PropTypes.string.isRequired,
    options: PropTypes.arrayOf(PropTypes.string).isRequired,
-   onChange: PropTypes.func, 
+   onChange: PropTypes.func,
    name: PropTypes.string.isRequired,
    isRequired: PropTypes.bool,
    errorMessage: PropTypes.string,

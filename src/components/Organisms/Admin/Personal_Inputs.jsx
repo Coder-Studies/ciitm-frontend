@@ -98,7 +98,7 @@ const Personal_Inputs = ({
 Personal_Inputs.propTypes = {
    Name: PropTypes.string,
    Email: PropTypes.string,
-   PhoneNumber: PropTypes.string,   
+   PhoneNumber: PropTypes.string,
    Gender: PropTypes.string,
    DateOfBirth: PropTypes.string,
 };

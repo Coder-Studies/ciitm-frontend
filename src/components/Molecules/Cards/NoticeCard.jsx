@@ -47,7 +47,7 @@ const NoticeCard = ({ title }) => {
 };
 
 NoticeCard.propTypes = {
-  title: PropTypes.string.isRequired,
+   title: PropTypes.string.isRequired,
 };
 
 export default NoticeCard;

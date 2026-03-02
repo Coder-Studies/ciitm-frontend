@@ -38,14 +38,22 @@ const Signup = () => {
    let Handle_Signup = async e => {
       e.preventDefault();
 
+      setIsLoading(true);
+
       if (
-         !First_Name &&
-         !Last_Name &&
-         !email &&
-         !password &&
+         !First_Name ||
+         !Last_Name ||
+         !email ||
+         !password ||
          !confirm_Password
       ) {
-         throw new Error('Please Enter all the fields');
+         Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Please enter all fields',
+         });
+         setIsLoading(false);
+         return;
       }
 
       try {
@@ -64,14 +72,13 @@ const Signup = () => {
 
          dispatch(setUser(res.data.user));
       } catch (error) {
-         let error_message = error.response.data.message;
+         let error_message =
+            error?.response?.data?.message || 'Something went wrong';
 
          Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: error_message
-               ? error_message
-               : 'Something went wrong',
+            text: error_message,
          });
       } finally {
          setIsLoading(false);
@@ -148,10 +155,11 @@ const Signup = () => {
 
                <div className='flex w-full items-center justify-center gap-6 max-[999px]:gap-4 my-2 max-[999px]:flex-col'>
                   <button
-                     onClick={e => Handle_Signup(e)}
-                     className='bg-[#333] text-white font-medium rounded-lg p-3.5 w-1/2 text-[1vw] max-[999px]:text-[3vw] max-[999px]:w-full'
+                     disabled={isLoading}
+                     onClick={Handle_Signup}
+                     className='bg-[#333] text-white font-medium rounded-lg p-3.5 w-1/2 text-[1vw] max-[999px]:text-[3vw] max-[999px]:w-full disabled:opacity-60'
                   >
-                     Sign Up
+                     {isLoading ? 'Signing up...' : 'Sign Up'}
                   </button>
                   <button className='bg-[#333] text-white font-medium rounded-lg p-3.5 w-1/2 text-[1vw] max-[999px]:text-[3vw] max-[999px]:w-full'>
                      <Google_Wrapper text='Sign up with Google' />

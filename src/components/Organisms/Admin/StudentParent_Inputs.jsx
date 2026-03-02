@@ -1,4 +1,5 @@
 import Input_Primary from '../../Atoms/Input/Input_Primary';
+import PropTypes from 'prop-types';
 
 const StudentParent_Inputs = ({
    FatherName = '',
@@ -57,6 +58,12 @@ const StudentParent_Inputs = ({
          </div>
       </div>
    );
+};
+
+StudentParent_Inputs.propTypes = {
+   FatherName: PropTypes.string,
+   MotherName: PropTypes.string,
+   GuardianNumber: PropTypes.string,
 };
 
 export default StudentParent_Inputs;

@@ -124,7 +124,8 @@ const TestimonialPrimaryCard = ({
 TestimonialPrimaryCard.propTypes = {
    image: PropTypes.string,
    name: PropTypes.string,
-   _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+   _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+      .isRequired,
    job_Role: PropTypes.string,
    message: PropTypes.string,
    rating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),

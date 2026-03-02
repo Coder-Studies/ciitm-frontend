@@ -9,11 +9,17 @@ import {
 } from '../../../../store/NavigatorSlice';
 import PropTypes from 'prop-types';
 
-const FormTemplate = ({ children, Navigator: showNavigator = true, PageName }) => {
+const FormTemplate = ({
+   children,
+   Navigator: showNavigator = true,
+   PageName,
+}) => {
    const dispatch = useDispatch();
    const navigator = useSelector(state => state.Navigator.navigator);
 
-   const findNavigator = navigator.find(item => item.pageName === PageName);
+   const findNavigator = navigator.find(
+      item => item.pageName === PageName,
+   );
 
    const canNavigate = showNavigator && !!findNavigator;
 

@@ -48,7 +48,10 @@ CourseCard.propTypes = {
       duration: PropTypes.string,
       imageUrl: PropTypes.string,
       _id: PropTypes.string,
-      price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      price: PropTypes.oneOfType([
+         PropTypes.string,
+         PropTypes.number,
+      ]),
    }).isRequired,
 };
 
