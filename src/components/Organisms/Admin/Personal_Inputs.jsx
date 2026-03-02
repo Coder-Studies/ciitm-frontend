@@ -1,4 +1,5 @@
 import Input_Primary from '../../Atoms/Input/Input_Primary';
+import PropTypes from 'prop-types';
 
 const Personal_Inputs = ({
    Name = '',
@@ -92,6 +93,14 @@ const Personal_Inputs = ({
          </div>
       </div>
    );
+};
+
+Personal_Inputs.propTypes = {
+   Name: PropTypes.string,
+   Email: PropTypes.string,
+   PhoneNumber: PropTypes.string,   
+   Gender: PropTypes.string,
+   DateOfBirth: PropTypes.string,
 };
 
 export default Personal_Inputs;

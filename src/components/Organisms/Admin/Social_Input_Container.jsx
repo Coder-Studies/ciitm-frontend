@@ -1,5 +1,6 @@
 import Social_Input from '../../Molecules/Admin/Profile/Social_Input';
 import H3 from '../../Atoms/Heading/H3';
+import PropTypes from 'prop-types';
 
 const Social_Input_Container = ({ Link = [] }) => {
    return (
@@ -19,6 +20,17 @@ const Social_Input_Container = ({ Link = [] }) => {
          ))}
       </div>
    );
+};
+
+Social_Input_Container.propTypes = {
+   Link: PropTypes.arrayOf(
+      PropTypes.shape({
+         Icon: PropTypes.element.isRequired,
+         LinkUrl: PropTypes.string.isRequired,
+         PlaceHolder: PropTypes.string,
+         ReadOnly: PropTypes.bool,
+      })
+   ),
 };
 
 export default Social_Input_Container;

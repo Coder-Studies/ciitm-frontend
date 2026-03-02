@@ -1,5 +1,5 @@
-import React from 'react';
 import CourseFeeInfoInputs from '../../../Organisms/Admin/FeeInfoInputs';
+import PropTypes from 'prop-types';
 
 const FeeUniversityInfo = ({ data = {} }) => {
    return (
@@ -11,6 +11,23 @@ const FeeUniversityInfo = ({ data = {} }) => {
          />
       </div>
    );
+};
+
+FeeUniversityInfo.propTypes = {
+   data: PropTypes.shape({
+      TotalAmountDue: PropTypes.oneOfType([
+         PropTypes.string,
+         PropTypes.number,
+      ]),
+      TotalCourseFee: PropTypes.oneOfType([
+         PropTypes.string,
+         PropTypes.number,
+      ]),
+      TotalAmountPaid: PropTypes.oneOfType([
+         PropTypes.string,
+         PropTypes.number,
+      ]),
+   }),
 };
 
 export default FeeUniversityInfo;

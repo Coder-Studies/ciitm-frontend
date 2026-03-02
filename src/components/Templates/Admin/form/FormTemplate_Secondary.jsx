@@ -1,5 +1,5 @@
-import React from 'react';
 import H4 from '../../../Atoms/Heading/H4';
+import PropTypes from 'prop-types';
 
 const FormTemplate_Secondary = ({
    Title,
@@ -18,6 +18,13 @@ const FormTemplate_Secondary = ({
          {children}
       </div>
    );
+};
+
+FormTemplate_Secondary.propTypes = {
+   Title: PropTypes.string.isRequired,
+   TitleClassName: PropTypes.string,
+   HeadingClassName: PropTypes.string,
+   children: PropTypes.node.isRequired,
 };
 
 export default FormTemplate_Secondary;

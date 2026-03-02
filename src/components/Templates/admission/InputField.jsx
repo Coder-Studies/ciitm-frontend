@@ -12,9 +12,10 @@ const admission = useSelector(state => state.admission.admission);
 
    const findIndex = admission.findIndex(item => item.name === name);
 
-   useEffect(() => {
-      setValue(admission[findIndex]?.value ?? '');
-   }, [admission, findIndex]);
+useEffect(() => {
+   const next = admission[findIndex]?.value ?? '';
+   setValue(prev => (prev === next ? prev : next));
+}, [admission, findIndex]);
 
    const nameAndId = (placeholder || '').replace(/\s+/g, '').toLowerCase();
 
