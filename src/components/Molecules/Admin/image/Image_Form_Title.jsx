@@ -1,4 +1,5 @@
 import H4 from '../../../Atoms/Heading/H4';
+import PropTypes from 'prop-types';
 
 const Image_Form_Title = ({ Title }) => {
    return (
@@ -8,6 +9,10 @@ const Image_Form_Title = ({ Title }) => {
          </H4>
       </div>
    );
+};
+
+Image_Form_Title.propTypes = {
+   Title: PropTypes.string.isRequired,
 };
 
 export default Image_Form_Title;

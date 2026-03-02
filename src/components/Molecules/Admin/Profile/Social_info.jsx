@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Social_Input from './Social_Input';
 import H3 from '../../../Atoms/Heading/H3';
 import { RiInstagramFill } from 'react-icons/ri';
