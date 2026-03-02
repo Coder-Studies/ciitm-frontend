@@ -10,17 +10,20 @@ const AdminInputContact_View = ({ data }) => {
 };
 
 AdminInputContact_View.propTypes = {
-  data: PropTypes.shape({
-    _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    cName: PropTypes.string,
-    cEmail: PropTypes.string,
-    cNumber: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    cMessage: PropTypes.string,
-  }),
+   data: PropTypes.shape({
+      _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      cName: PropTypes.string,
+      cEmail: PropTypes.string,
+      cNumber: PropTypes.oneOfType([
+         PropTypes.string,
+         PropTypes.number,
+      ]),
+      cMessage: PropTypes.string,
+   }),
 };
 
 AdminInputContact_View.defaultProps = {
-  data: {},
+   data: {},
 };
 
 export default AdminInputContact_View;
