@@ -1,13 +1,13 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { setInput, UpdateInput } from '../../store/AuthSlice';
 
 const Checkbox = ({ label, name }) => {
    const [Value, setValue] = useState(null);
-   const [Name, setName] = useState(name);
 
    let array = useSelector(state => state.auth.data);
-   let find_index = array.findIndex(item => item.name === Name);
+   let find_index = array.findIndex(item => item.name === name);
 
    let dispatch = useDispatch();
 
@@ -15,7 +15,7 @@ const Checkbox = ({ label, name }) => {
       setValue(e.target.checked);
 
       let data = {
-         name: Name,
+         name: name,
          value: e.target.checked,
       };
 
@@ -46,6 +46,11 @@ const Checkbox = ({ label, name }) => {
          )}
       </>
    );
+};
+
+Checkbox.propTypes = {
+   label: PropTypes.string,
+   name: PropTypes.string.isRequired,
 };
 
 export default Checkbox;
