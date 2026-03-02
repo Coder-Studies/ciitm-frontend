@@ -1,89 +1,87 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { setInput, UpdateInput } from '../../store/AuthSlice';
 
 const Input = ({ type, placeholder, label, id, name }) => {
-   const [Name, setName] = useState(name);
-   const [Value, setValue] = useState(null);
-   const [Login_Checkbox, setLogin_Checkbox] = useState(false);
-   const [SignUp_Checkbox, setSignUp_Checkbox] = useState(false);
+  const dispatch = useDispatch();
+  const [value, setValue] = useState('');
 
-   let array = useSelector(state => state.auth.data);
+  const { loginCheckbox, signUpCheckbox, findIndex, existingValue } =
+    useSelector((state) => {
+      const arr = state.auth.data || []; 
+      const login = arr.find((i) => i.name === 'Login_CheckBox')?.value ?? false;
+      const signup = arr.find((i) => i.name === 'Sign_UP_CHECK')?.value ?? false;
+      const idx = arr.findIndex((i) => i.name === name);
+      const existing = arr.find((i) => i.name === name)?.value;
 
-   if (!array) {
-      return null;
-   }
-
-   let Find_Login_CheckBox = array.find(
-      item => item.name === 'Login_CheckBox',
-   );
-
-   let Find_SignUp_CheckBox = array.find(
-      item => item.name === 'Sign_UP_CHECK',
-   );
-
-   useEffect(() => {
-      if (Find_Login_CheckBox) {
-         setLogin_Checkbox(Find_Login_CheckBox.value);
-      }
-      if (Find_SignUp_CheckBox) {
-         setSignUp_Checkbox(Find_SignUp_CheckBox.value);
-      }
-   }, [Find_Login_CheckBox, Find_SignUp_CheckBox]);
-
-   let find_index = array.findIndex(item => item.name === Name);
-
-   let dispatch = useDispatch();
-
-   let handleInput = e => {
-      setValue(e.target.value);
-
-      let data = {
-         name: Name,
-         value: e.target?.value,
+      return {
+        array: arr,
+        loginCheckbox: login,
+        signUpCheckbox: signup,
+        findIndex: idx,
+        existingValue: typeof existing === 'string' ? existing : '',
       };
+    });
 
-      if (find_index !== -1) {
-         dispatch(UpdateInput(data));
-      } else {
-         dispatch(setInput(data));
-      }
-   };
+  useEffect(() => {
+    // opcjonalnie: synchronizacja inputa z reduxem
+    if (existingValue !== '') setValue(existingValue);
+  }, [existingValue]);
 
-   let Handle_Unchacked = () => {
-      if (Login_Checkbox === true) {
-         return 'text';
-      }
+  const inputType =
+    type !== 'password'
+      ? 'text'
+      : loginCheckbox || signUpCheckbox
+        ? 'text'
+        : 'password';
 
-      if (SignUp_Checkbox === true) {
-         return 'text';
-      }
+  const handleInput = (e) => {
+    const nextValue = e.target.value;
+    setValue(nextValue);
 
-      return 'password';
-   };
+    const data = { name, value: nextValue };
+    if (findIndex !== -1) dispatch(UpdateInput(data));
+    else dispatch(setInput(data));
+  };
 
-   return (
-      <div className='mb-4'>
-         {label && (
-            <label
-               htmlFor={id}
-               className='block text-[1vw] my-2 text-[#5F5F5F] max-[999px]:text-[3vw]'
-            >
-               {label}
-            </label>
-         )}
-         <input
-            type={type !== 'password' ? 'text' : Handle_Unchacked()}
-            value={Value}
-            autoComplete='off'
-            id={id}
-            name={name}
-            onInput={e => handleInput(e)}
-            placeholder={placeholder}
-            className='border-[0.83px] border-[#A0A0A080]/50 placeholder:text-[#333] rounded-lg p-3 w-full text-[0.8vw] max-[999px]:text-[2.5vw]'
-         />
-      </div>
-   );
+  return (
+    <div className="mb-4">
+      {label && (
+        <label
+          htmlFor={id}
+          className="block text-[1vw] my-2 text-[#5F5F5F] max-[999px]:text-[3vw]"
+        >
+          {label}
+        </label>
+      )}
+
+      <input
+        type={inputType}
+        value={value}
+        autoComplete="off"
+        id={id}
+        name={name}
+        onInput={handleInput}
+        placeholder={placeholder}
+        className="border-[0.83px] border-[#A0A0A080]/50 placeholder:text-[#333] rounded-lg p-3 w-full text-[0.8vw] max-[999px]:text-[2.5vw]"
+      />
+    </div>
+  );
+};
+
+Input.propTypes = {
+  type: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
+  label: PropTypes.string,
+  id: PropTypes.string,
+  name: PropTypes.string.isRequired,
+};
+
+Input.defaultProps = {
+  placeholder: '',
+  label: '',
+  id: undefined,
 };
 
 export default Input;

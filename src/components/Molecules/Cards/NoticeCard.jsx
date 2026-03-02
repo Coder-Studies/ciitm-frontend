@@ -1,10 +1,11 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { useRef } from 'react';
+import PropTypes from 'prop-types';
 
 import { IoClose } from 'react-icons/io5';
 
-const NoticeCard = ({ title, link }) => {
+const NoticeCard = ({ title }) => {
    const box_ref = useRef();
 
    useGSAP(() => {
@@ -43,6 +44,10 @@ const NoticeCard = ({ title, link }) => {
          />
       </div>
    );
+};
+
+NoticeCard.propTypes = {
+  title: PropTypes.string.isRequired,
 };
 
 export default NoticeCard;
