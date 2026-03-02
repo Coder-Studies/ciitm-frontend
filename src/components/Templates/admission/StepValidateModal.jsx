@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
 const StepValidateModal = ({
    isOpen,
@@ -34,6 +34,14 @@ const StepValidateModal = ({
          </div>
       </div>
    );
+};
+
+StepValidateModal.propTypes = {
+   isOpen: PropTypes.bool.isRequired,
+   onClose: PropTypes.func.isRequired,
+   title: PropTypes.string.isRequired,
+   message: PropTypes.string.isRequired,
+   missingFields: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default StepValidateModal;
