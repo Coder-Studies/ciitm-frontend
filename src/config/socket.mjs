@@ -1,8 +1,11 @@
 import { io } from 'socket.io-client';
 
+const BACKEND_URL =
+   import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000';
+
 if (!import.meta.env.VITE_BACKEND_URL) {
-   throw new Error(
-      'VITE_BACKEND_URL is not defined in environment variables',
+   console.warn(
+      'VITE_BACKEND_URL is not defined in environment variables, falling back to http://localhost:3000',
    );
 }
 
@@ -10,9 +13,9 @@ const MAX_RETRIES = 5;
 let retryCount = 0;
 let reconnecting = false;
 
-console.log('Connecting to', import.meta.env.VITE_BACKEND_URL);
+console.log('Connecting to', BACKEND_URL);
 
-const socket = io(import.meta.env.VITE_BACKEND_URL, {
+const socket = io(BACKEND_URL, {
    auth: {
       token: localStorage.getItem('token'), // or sessionStorage
    },

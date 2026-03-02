@@ -1,11 +1,9 @@
-import React from 'react';
 import {
    FaArrowAltCircleLeft,
    FaArrowAltCircleRight,
 } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-   increaseLimit,
    increaseParPage,
    decreaseParPage,
 } from '../../../../store/NavigatorSlice';

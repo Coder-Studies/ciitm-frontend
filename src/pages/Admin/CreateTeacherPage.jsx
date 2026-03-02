@@ -13,15 +13,6 @@ import FormTemplate_Secondary from '../../components/Templates/Admin/form/FormTe
 import ImageUploadPreview from '../../components/Organisms/Admin/ImageUploadPreview';
 import PropTypes from 'prop-types';
 
-InputField.propTypes = {
-   label: PropTypes.string.isRequired,
-   name: PropTypes.string.isRequired,
-   register: PropTypes.func.isRequired,
-   errors: PropTypes.object.isRequired,
-   placeholder: PropTypes.string,
-   type: PropTypes.string,
-};
-
 const DEFAULT_AVATAR =
    'https://ui-avatars.com/api/?name=Teacher&background=0D8ABC&color=fff';
 
@@ -90,6 +81,15 @@ const InputField = ({
       )}
    </div>
 );
+
+InputField.propTypes = {
+   label: PropTypes.string.isRequired,
+   name: PropTypes.string.isRequired,
+   register: PropTypes.func.isRequired,
+   errors: PropTypes.object.isRequired,
+   placeholder: PropTypes.string,
+   type: PropTypes.string,
+};
 
 export default function CreateTeacherPage() {
    const user = useSelector(selectUser);

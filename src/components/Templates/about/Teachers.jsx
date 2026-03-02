@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useEffect, memo } from 'react';
+import { Suspense, useState, useEffect, memo } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import useTeacher from '../../../hooks/useTeacher';
