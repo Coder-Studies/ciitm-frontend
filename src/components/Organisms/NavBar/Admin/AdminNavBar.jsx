@@ -1,7 +1,7 @@
-import React from 'react';
 import Nav_UserCard from '../../../Molecules/Cards/NavUserCard';
 import Open_menu from '../../../Atoms/Icon/Open_menu';
 import H3 from '../../../Atoms/Heading/H3';
+import PropTypes from 'prop-types';
 
 const Admin_NavBar = ({ text }) => {
    return (
@@ -20,6 +20,10 @@ const Admin_NavBar = ({ text }) => {
          <Open_menu />
       </div>
    );
+};
+
+Admin_NavBar.propTypes = {
+   text: PropTypes.string,
 };
 
 export default Admin_NavBar;

@@ -3,10 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { MdDelete } from 'react-icons/md';
 import { deleteTestimonial } from '../../../../store/Testimonials.slice';
 import { toast } from 'react-toastify';
+import PropTypes from 'prop-types';
 
 const renderStars = (count = 0) => {
+   const n = Number(count) || 0;
+
    return [...Array(5)].map((_, i) => (
-      <span key={i} className={`inline-block text-yellow-400`}>
+      <span
+         key={i}
+         className={`inline-block ${i < n ? 'text-yellow-400' : 'text-gray-300'}`}
+      >
          <MdStar />
       </span>
    ));
@@ -113,6 +119,35 @@ const TestimonialPrimaryCard = ({
          </div>
       </div>
    );
+};
+
+TestimonialPrimaryCard.propTypes = {
+   image: PropTypes.string,
+   name: PropTypes.string,
+   _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+   job_Role: PropTypes.string,
+   message: PropTypes.string,
+   rating: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+   containerClass: PropTypes.string,
+   imageClass: PropTypes.string,
+   nameClass: PropTypes.string,
+   roleClass: PropTypes.string,
+   messageClass: PropTypes.string,
+   starClass: PropTypes.string,
+};
+
+TestimonialPrimaryCard.defaultProps = {
+   image: '',
+   name: '',
+   job_Role: '',
+   message: '',
+   rating: 0,
+   containerClass: '',
+   imageClass: '',
+   nameClass: '',
+   roleClass: '',
+   messageClass: '',
+   starClass: '',
 };
 
 export default TestimonialPrimaryCard;

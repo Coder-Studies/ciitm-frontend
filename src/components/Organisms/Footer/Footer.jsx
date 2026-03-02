@@ -27,6 +27,8 @@ SocialLink.propTypes = {
    isEmail: PropTypes.bool,
 };
 
+SocialLink.displayName = 'SocialLink';
+
 const Footer = React.memo(() => {
    useSocialLinks();
    const socialLinks = useSelector(state => state.socialLink.links);
@@ -120,5 +122,7 @@ const Footer = React.memo(() => {
       </footer>
    );
 });
+
+Footer.displayName = 'Footer';
 
 export default Footer;
