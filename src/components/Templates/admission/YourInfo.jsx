@@ -333,7 +333,33 @@ const DropdownWrapper = ({
    </div>
 );
 
-// PropTypes
+FieldWrapper.propTypes = {
+   id: PropTypes.string.isRequired,
+   label: PropTypes.string.isRequired,
+   type: PropTypes.string,
+   required: PropTypes.bool,
+   value: PropTypes.string,
+   inputMode: PropTypes.string,
+   handleInputChange: PropTypes.func.isRequired,
+   onFocus: PropTypes.func.isRequired,
+   onBlur: PropTypes.func.isRequired,
+   getBorderClass: PropTypes.func.isRequired,
+   hasError: PropTypes.func.isRequired,
+};
+
+DropdownWrapper.propTypes = {
+   id: PropTypes.string.isRequired,
+   label: PropTypes.string.isRequired,
+   required: PropTypes.bool,
+   value: PropTypes.string,
+   options: PropTypes.arrayOf(PropTypes.string).isRequired,
+   handleInputChange: PropTypes.func.isRequired,
+   onFocus: PropTypes.func.isRequired,
+   onBlur: PropTypes.func.isRequired,
+   getBorderClass: PropTypes.func.isRequired,
+   hasError: PropTypes.func.isRequired,
+};
+
 YourInfo.propTypes = {
    formData: PropTypes.object,
    handleInputChange: PropTypes.func.isRequired,
