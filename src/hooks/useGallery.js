@@ -3,26 +3,27 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { set_Gallery } from '../store/GallerySlice';
 
-export let useGallery = () => {
+const useGallery = () => {
    const dispatch = useDispatch();
    const gallery = useSelector(state => state.gallery);
 
-   const fetchData = async () => {
-      try {
-         if (gallery.length < 1) {
-            let res = await axios.get('/api/v1/user/get/All/Image');
-
-            let data = res.data.data;
-
-            dispatch(set_Gallery([...data]));
-         }
-      } catch (error) {
-         console.error(error);
-         throw new Error(error.message);
-      }
-   };
-
    useEffect(() => {
+      const fetchData = async () => {
+         try {
+            if (!gallery || gallery.length < 1) {
+               const res = await axios.get(
+                  '/api/v1/user/get/All/Image',
+               );
+               const data = res.data.data;
+               dispatch(set_Gallery(data));
+            }
+         } catch (error) {
+            console.error(error?.message || error);
+         }
+      };
+
       fetchData();
-   }, [gallery]);
+   }, [gallery, dispatch]);
 };
+
+export default useGallery;
