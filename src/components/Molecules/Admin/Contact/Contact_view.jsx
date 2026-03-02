@@ -4,6 +4,7 @@ import TextArea_Primary from '../../../Atoms/Textarea/TextArea_Primary';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const Contact_view = ({ data = {} }) => {
    let Navigator = useNavigate();
@@ -157,6 +158,20 @@ const Contact_view = ({ data = {} }) => {
          </div>
       </div>
    );
+};
+
+Contact_view.propTypes = {
+  data: PropTypes.shape({
+    _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    cName: PropTypes.string,
+    cEmail: PropTypes.string,
+    cNumber: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    cMessage: PropTypes.string,
+  }),
+};
+
+Contact_view.defaultProps = {
+  data: {},
 };
 
 export default Contact_view;
