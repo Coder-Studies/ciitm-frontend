@@ -1,9 +1,10 @@
-export default function ImageUploadPreview({
+import PropTypes from 'prop-types';
+const ImageUploadPreview = ({
    fileRef,
    imagePreview,
    onImageChange,
    errors,
-}) {
+}) => {
    // let imageRef = useRef(); removed imageRef instead uses the parent's fileRef being passed through prop so that it is directly bound to the childs <input>
 
    return (
@@ -38,3 +39,18 @@ export default function ImageUploadPreview({
       </div>
    );
 }
+
+ImageUploadPreview.propTypes = {
+   fileRef: PropTypes.shape({
+      current: PropTypes.instanceOf(Element),
+   }).isRequired,
+   imagePreview: PropTypes.string,
+   onImageChange: PropTypes.func.isRequired,
+   errors: PropTypes.shape({
+      image: PropTypes.shape({
+         message: PropTypes.string,
+      }),
+   }),
+};
+
+export default ImageUploadPreview;
