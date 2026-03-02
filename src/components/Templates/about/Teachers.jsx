@@ -87,6 +87,8 @@ const TeacherCard = memo(({ teacher }) => {
    );
 });
 
+TeacherCard.displayName = 'TeacherCard';
+
 const Teachers = () => {
    const teachers = useSelector(state => state.about.teacher);
    const [swiperVisible, setSwiperVisible] = useState(false);

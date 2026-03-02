@@ -1,6 +1,6 @@
-import React from 'react';
 import InputField from './InputField';
 import Dropdown from './DropDown';
+import PropTypes from 'prop-types';
 
 const Grades = ({ handleInputChange }) => {
    return (
@@ -52,6 +52,10 @@ const Grades = ({ handleInputChange }) => {
          />
       </div>
    );
+};
+
+Grades.propTypes = {
+   handleInputChange: PropTypes.func.isRequired,
 };
 
 export default Grades;
