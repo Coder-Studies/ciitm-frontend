@@ -1,4 +1,3 @@
-import React from 'react';
 
 import Contact_view from '../../Molecules/Admin/Contact/Contact_view';
 

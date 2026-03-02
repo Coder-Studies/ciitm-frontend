@@ -1,5 +1,4 @@
 import React from 'react';
-import TableRow_Data from '../../Molecules/table/TableRow_Data';
 import Loader from 'react-spinners/ScaleLoader';
 import TableRow from '../../Atoms/Table/Tr/TableRow';
 import TableData from '../../Atoms/Table/Td/TableData';

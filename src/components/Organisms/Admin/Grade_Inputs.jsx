@@ -1,4 +1,3 @@
-import React from 'react';
 import Input_Primary from '../../Atoms/Input/Input_Primary';
 
 const GradeInputs = ({

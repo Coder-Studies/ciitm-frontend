@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import Input_Primary from '../../../Atoms/Input/Input_Primary';
 import H3 from '../../../Atoms/Heading/H3';
 import { useSelector } from 'react-redux';
@@ -41,4 +41,5 @@ const ProfileInfo = memo(({ admin = {} }) => {
    );
 });
 
+ProfileInfo.displayName = 'ProfileInfo';
 export default ProfileInfo;

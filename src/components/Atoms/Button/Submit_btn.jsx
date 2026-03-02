@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import Swal from 'sweetalert2';

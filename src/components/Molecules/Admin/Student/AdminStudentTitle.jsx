@@ -1,4 +1,3 @@
-import React from 'react';
 import H4 from '../../../Atoms/Heading/H4';
 
 const AdminStudentTitle = ({ title }) => {

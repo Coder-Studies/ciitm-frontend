@@ -1,4 +1,3 @@
-import React from 'react';
 import H2 from '../../Atoms/Heading/H2';
 import P1 from '../../Atoms/Paragraph/P1';
 
