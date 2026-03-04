@@ -10,8 +10,8 @@ const TableRow_Data = ({ TableDataArray, TableRowClassName }) => {
 
    return (
       <TableRow Tailwind_utility_Class={TableRowClassName}>
-         {TableDataArray.map((node, index) => (
-            <span key={index}>{node}</span>
+         {TableDataArray.map((item, index) => (
+            <TableData key={index}>{item}</TableData>
          ))}
       </TableRow>
    );
