@@ -39,7 +39,7 @@ const AdminRoleManagement = () => {
          const token = user?.token || localStorage.getItem('token');
 
          const res = await axios.get(Get_All_Admins_EndPoint, {
-            headers: { Authorization: `Bearer ${token}` },
+                headers: { Authorization: `Bearer ${token}` },
          });
 
          setAdmins(res.data.data || res.data || []);
