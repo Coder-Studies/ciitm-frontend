@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { selectUser } from '../../store/AuthSlice';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { load } from '@cashfreepayments/cashfree-js';
 
 const Payment = () => {
+   const user = useSelector(selectUser);
    const [amount, setAmount] = useState('');
    const [loading, setLoading] = useState(false);
    const [paymentType, setPaymentType] = useState('');
@@ -41,6 +43,7 @@ const Payment = () => {
 
       try {
          setLoading(true);
+         const token = user?.token || localStorage.getItem('token');
 
          const payload = {
             order_amount: Number(amount),
@@ -59,6 +62,11 @@ const Payment = () => {
          const res = await axios.post(
             '/api/v1/Student/createOrder',
             payload,
+            {
+               headers: {
+                  Authorization: `Bearer ${token}`,
+               },
+            },
          );
 
          const cashfree = await load({ mode: 'SANDBOX' });
