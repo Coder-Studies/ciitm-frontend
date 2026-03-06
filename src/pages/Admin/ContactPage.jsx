@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from 'react';
+import { memo, useEffect, useState, useCallback } from 'react';
 
 import AdminTemplate from '../../components/Templates/Admin/AdminTemplate';
 import FormTemplate from '../../components/Templates/Admin/form/FormTemplate';
@@ -7,9 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { Admin_get_ContactData_EndPoint } from '../../utils/constants';
 import { setContact } from '../../store/AdminUi';
-import Swal from 'sweetalert2';
 import AdminContactData_Table from '../../components/Organisms/Admin/AdminContactData_Table';
-import { setNavigator } from '../../store/NavigatorSlice';
 
 const ContactPage = memo(() => {
    let dispatch = useDispatch();
@@ -28,27 +26,33 @@ const ContactPage = memo(() => {
 
    const [contactData, setContactData] = useState([]);
 
-   const GetContactData = async () => {
+   const GetContactData = useCallback(async () => {
+      if (!findNavigator) return;
+
       try {
          setIsError(false);
+         setIsLoading(true);
+
          const res = await axios.get(
             Admin_get_ContactData_EndPoint +
                `?perPage=${findNavigator.parPage}&limit=${findNavigator.limit}`,
          );
 
          setContactData(res.data.data);
-
          dispatch(setContact(res.data.data));
       } catch (error) {
          setIsError(true);
-         setMessage(error.response.data.message);
+         setMessage(
+            error?.response?.data?.message || 'Something went wrong',
+         );
+      } finally {
          setIsLoading(false);
       }
-   };
+   }, [findNavigator, dispatch]);
 
    useEffect(() => {
       GetContactData();
-   }, [findNavigator.limit, findNavigator.parPage]);
+   }, [GetContactData]);
 
    return (
       <>
@@ -78,4 +82,5 @@ const ContactPage = memo(() => {
    );
 });
 
+ContactPage.displayName = 'ContactPage';
 export default ContactPage;

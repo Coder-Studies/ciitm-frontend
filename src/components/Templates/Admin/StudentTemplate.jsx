@@ -1,6 +1,6 @@
-import React from 'react';
 import Student_NavBar from '../../Organisms/NavBar/Student/Student_NavBar';
 import Student_SideBar from '../../Organisms/NavBar/Student/Student_SideBar';
+import PropTypes from 'prop-types';
 
 const StudentTemplate = ({ children, Custom_Nav_Style }) => {
    return (
@@ -15,6 +15,11 @@ const StudentTemplate = ({ children, Custom_Nav_Style }) => {
          </div>
       </div>
    );
+};
+
+StudentTemplate.propTypes = {
+   children: PropTypes.node.isRequired,
+   Custom_Nav_Style: PropTypes.string,
 };
 
 export default StudentTemplate;

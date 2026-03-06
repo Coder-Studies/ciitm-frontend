@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import arrow from '../../../assets/images/arrow.png';
 import H2 from '../../Atoms/Heading/H2';

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import Circle_Image from '../../Atoms/Image/Circle_Image';
-import P2 from '../../Atoms/Paragraph/P2';
 import P3 from '../../Atoms/Paragraph/P3';
 import { Link } from 'react-router-dom';
 
@@ -18,20 +18,16 @@ const UserProfileCard = ({
    showMenu = true,
 }) => {
    const reduxUser = useSelector(state => state.auth.user);
-
    const actualUser = user || reduxUser;
 
-   const [img, setImg] = useState('');
+   const [img, setImg] = useState(fallbackImage);
 
    useEffect(() => {
-      if (actualUser?.profile_image) {
-         setImg(actualUser.profile_image);
-      }
-   }, [actualUser]);
+      if (actualUser?.profile_image) setImg(actualUser.profile_image);
+      else setImg(fallbackImage);
+   }, [actualUser, fallbackImage]);
 
-   const handleImageError = () => {
-      setImg(fallbackImage);
-   };
+   const handleImageError = () => setImg(fallbackImage);
 
    return (
       <Link to='/admin/profile'>
@@ -43,17 +39,42 @@ const UserProfileCard = ({
                   fn={handleImageError}
                />
             </div>
+
             <div>
                <P3 Tailwind_utility_Class={textClassName}>
                   {actualUser?.email || 'User Name'}
                </P3>
             </div>
+
             {showMenu && (
                <BsThreeDotsVertical className='text-white text-[2xl]' />
             )}
          </div>
       </Link>
    );
+};
+
+UserProfileCard.propTypes = {
+   user: PropTypes.shape({
+      email: PropTypes.string,
+      profile_image: PropTypes.string,
+   }),
+   fallbackImage: PropTypes.string,
+   containerClassName: PropTypes.string,
+   imgClassName: PropTypes.string,
+   textClassName: PropTypes.string,
+   showMenu: PropTypes.bool,
+};
+
+UserProfileCard.defaultProps = {
+   user: null,
+   fallbackImage: defaultFallbackImg,
+   containerClassName:
+      'p-[2vh] w-[35vw] lg:w-[25vw] h-[4.8rem] mt-[1rem] bg-[#252323] rounded-lg flex items-center justify-center gap-[2vw] max-[999px]:hidden hover:cursor-pointer',
+   imgClassName:
+      'bg-red-500  h-[3.5rem] lg:h-[2.5rem] w-[3.5rem] lg:w-[2.5rem] rounded-full flex items-center justify-center',
+   textClassName: 'text-white text-[2rem] lg:text-[0.8rem] ',
+   showMenu: true,
 };
 
 export default UserProfileCard;

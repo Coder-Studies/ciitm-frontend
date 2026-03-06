@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { GoArrowUpRight } from 'react-icons/go';
 import { MdDelete } from 'react-icons/md';
 import { Link } from 'react-router-dom';
@@ -16,7 +17,8 @@ const AlbumPrimaryCard = ({
    dateFormat = 'DD-MM-YYYY',
    separator = '-',
 }) => {
-   const parsedDate = date?.split('T')[0];
+   const parsedDate =
+      typeof date === 'string' ? date.split('T')[0] : '';
    let formattedDate = '';
 
    if (parsedDate) {
@@ -50,6 +52,7 @@ const AlbumPrimaryCard = ({
          <div
             className='absolute z-10 top-2 right-2 bg-black bg-opacity-70 p-2 rounded-full hover:bg-opacity-100'
             onClick={e => {
+               e.preventDefault();
                e.stopPropagation();
                onClickDelete?.(e);
             }}
@@ -71,6 +74,40 @@ const AlbumPrimaryCard = ({
          </div>
       </Link>
    );
+};
+
+AlbumPrimaryCard.propTypes = {
+   image: PropTypes.string.isRequired,
+   title: PropTypes.string.isRequired,
+   date: PropTypes.string,
+   isAdmin: PropTypes.bool,
+   onClickDelete: PropTypes.func,
+   onClickViewUrl: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object,
+   ]).isRequired,
+   containerClass: PropTypes.string,
+   imageClass: PropTypes.string,
+   titleClass: PropTypes.string,
+   dateClass: PropTypes.string,
+   dateFormat: PropTypes.oneOf([
+      'DD-MM-YYYY',
+      'MM-DD-YYYY',
+      'YYYY-MM-DD',
+   ]),
+   separator: PropTypes.string,
+};
+
+AlbumPrimaryCard.defaultProps = {
+   date: '',
+   isAdmin: false,
+   onClickDelete: null,
+   containerClass: '',
+   imageClass: '',
+   titleClass: '',
+   dateClass: '',
+   dateFormat: 'DD-MM-YYYY',
+   separator: '-',
 };
 
 export default AlbumPrimaryCard;

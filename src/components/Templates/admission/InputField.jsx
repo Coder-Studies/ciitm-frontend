@@ -1,51 +1,46 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import {
    setAdmission,
-   Admission,
    setOneAdmission,
 } from '../../../store/AdmissionSlice';
 
 const InputField = ({ placeholder, type, name, required }) => {
-   let admission = useSelector(state => state.admission.admission);
-   let find_index = admission.findIndex(item => item.name === name);
-
-   useEffect(() => {
-      setValue(admission[find_index]?.value);
-   }, [admission]);
-
-   let array = [];
-
-   let dispatch = useDispatch();
+   const admission = useSelector(state => state.admission.admission);
+   const dispatch = useDispatch();
 
    const [value, setValue] = useState('');
-
    const [isError, setIsError] = useState(false);
 
-   const nameAndId = placeholder.replace(/\s+/g, '').toLowerCase();
+   const findIndex = admission.findIndex(item => item.name === name);
+
+   useEffect(() => {
+      const next = admission[findIndex]?.value ?? '';
+      setValue(prev => (prev === next ? prev : next));
+   }, [admission, findIndex]);
+
+   const nameAndId = (placeholder || '')
+      .replace(/\s+/g, '')
+      .toLowerCase();
 
    const handleChange = e => {
       setValue(e.target.value);
+      if (required) setIsError(e.target.value.trim() === '');
    };
 
    const handleBlur = e => {
-      let data = {
-         name: name,
-         value: e.target.value,
-      };
+      const nextValue = e.target.value;
 
-      if (find_index === -1) {
-         array.push(data);
+      const data = { name, value: nextValue };
 
-         array.forEach(element => {
-            dispatch(setAdmission(data));
-         });
+      if (findIndex === -1) {
+         dispatch(setAdmission(data));
       } else {
-         array[find_index] = data;
          dispatch(setOneAdmission(data));
       }
 
-      if (required && e.target.value === '') {
+      if (required && nextValue.trim() === '') {
          setIsError(true);
       } else {
          setIsError(false);
@@ -69,10 +64,23 @@ const InputField = ({ placeholder, type, name, required }) => {
          />
 
          {isError && (
-            <p className='text-[#FF0000] absolute -bottom-5 text-xs mt-1'>{`${placeholder} is required.`}</p>
+            <p className='text-[#FF0000] absolute -bottom-5 text-xs mt-1'>
+               {`${placeholder} is required.`}
+            </p>
          )}
       </div>
    );
+};
+
+InputField.propTypes = {
+   placeholder: PropTypes.string.isRequired,
+   type: PropTypes.string.isRequired,
+   name: PropTypes.string.isRequired,
+   required: PropTypes.bool,
+};
+
+InputField.defaultProps = {
+   required: false,
 };
 
 export default InputField;

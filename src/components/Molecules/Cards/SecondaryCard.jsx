@@ -1,6 +1,6 @@
-import React from 'react';
 import H2 from '../../Atoms/Heading/H2';
 import P1 from '../../Atoms/Paragraph/P1';
+import PropTypes from 'prop-types';
 
 const SecondaryCard = ({
    title,
@@ -25,6 +25,15 @@ const SecondaryCard = ({
          </div>
       </div>
    );
+};
+
+SecondaryCard.propTypes = {
+   title: PropTypes.string.isRequired,
+   subtitle: PropTypes.string.isRequired,
+   imageSrc: PropTypes.string.isRequired,
+   containerClass: PropTypes.string,
+   imageClass: PropTypes.string,
+   textClass: PropTypes.string,
 };
 
 export default SecondaryCard;

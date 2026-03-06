@@ -1,8 +1,9 @@
 import { useEffect, useState, memo } from 'react';
 import { useSelector } from 'react-redux';
 import bulletPoint from '../../../assets/images/bulletPoint.svg';
+import PropTypes from 'prop-types';
 
-const FacilitiesCard = memo(({ title, index, isActive, onClick }) => {
+const FacilitiesCard = memo(({ title, isActive, onClick }) => {
    return (
       <div
          className={`FacilitesCard flex gap-3 rounded-md cursor-pointer w-full h-full p-2 ${
@@ -21,6 +22,14 @@ const FacilitiesCard = memo(({ title, index, isActive, onClick }) => {
       </div>
    );
 });
+
+FacilitiesCard.displayName = 'FacilitiesCard';
+
+FacilitiesCard.propTypes = {
+   title: PropTypes.string.isRequired,
+   isActive: PropTypes.bool.isRequired,
+   onClick: PropTypes.func.isRequired,
+};
 
 const CampusFacilities = () => {
    const [facilities, setFacilities] = useState([]);

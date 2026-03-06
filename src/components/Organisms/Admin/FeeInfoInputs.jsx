@@ -1,5 +1,5 @@
-import React from 'react';
 import Input_Primary from '../../Atoms/Input/Input_Primary';
+import PropTypes from 'prop-types';
 
 const CourseFeeInfoInputs = ({
    totalCourseFee = '',
@@ -58,6 +58,21 @@ const CourseFeeInfoInputs = ({
          </div>
       </div>
    );
+};
+
+CourseFeeInfoInputs.propTypes = {
+   totalCourseFee: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+   ]),
+   totalAmountPaid: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+   ]),
+   totalAmountDue: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+   ]),
 };
 
 export default CourseFeeInfoInputs;

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import Social_Input from './Social_Input';
 import H3 from '../../../Atoms/Heading/H3';
 import { RiInstagramFill } from 'react-icons/ri';
@@ -8,16 +9,16 @@ import { IoLogoLinkedin } from 'react-icons/io5';
 import { FaSquarePhone } from 'react-icons/fa6';
 import { useSelector } from 'react-redux';
 
-const Social_info = ({ link }) => {
-   let [ReadOnlyValue, setReadOnlyValue] = useState(true);
+const Social_info = ({ link = {} }) => {
+   const [ReadOnlyValue, setReadOnlyValue] = useState(true);
    const data = useSelector(state => state.Input.inputs);
 
    useEffect(() => {
-      if (data.length > 0) {
-         const ReadOnly = data.find(
+      if (data?.length > 0) {
+         const found = data.find(
             input => input.name === 'Profile_Edit',
-         ).value;
-         setReadOnlyValue(ReadOnly);
+         );
+         if (found) setReadOnlyValue(found.value);
       }
    }, [data]);
 
@@ -30,23 +31,23 @@ const Social_info = ({ link }) => {
          <Social_Input
             LinkUrl={link.instagram}
             Icon={<RiInstagramFill />}
-            PlaceHolder={'Instagram Link'}
+            PlaceHolder='Instagram Link'
             ReadOnly={ReadOnlyValue}
-            Name={'instagram'}
+            Name='instagram'
          />
          <Social_Input
             LinkUrl={link.facebook}
             Icon={<FaFacebookSquare />}
-            PlaceHolder={'Facebook Link'}
+            PlaceHolder='Facebook Link'
             ReadOnly={ReadOnlyValue}
-            Name={'facebook'}
+            Name='facebook'
          />
          <Social_Input
             LinkUrl={link.linkedin}
             Icon={<IoLogoLinkedin />}
-            PlaceHolder={'LinkedIn Link'}
+            PlaceHolder='LinkedIn Link'
             ReadOnly={ReadOnlyValue}
-            Name={'linkedin'}
+            Name='linkedin'
          />
          <Social_Input
             LinkUrl={link.email}
@@ -55,13 +56,30 @@ const Social_info = ({ link }) => {
          />
          <Social_Input
             LinkUrl={link.number}
-            PlaceHolder={'Phone Number'}
+            PlaceHolder='Phone Number'
             ReadOnly={ReadOnlyValue}
             Icon={<FaSquarePhone />}
             Name='number'
          />
       </div>
    );
+};
+
+Social_info.propTypes = {
+   link: PropTypes.shape({
+      instagram: PropTypes.string,
+      facebook: PropTypes.string,
+      linkedin: PropTypes.string,
+      email: PropTypes.string,
+      number: PropTypes.oneOfType([
+         PropTypes.string,
+         PropTypes.number,
+      ]),
+   }),
+};
+
+Social_info.defaultProps = {
+   link: {},
 };
 
 export default Social_info;

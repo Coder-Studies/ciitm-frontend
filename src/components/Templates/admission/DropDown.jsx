@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-
 import {
    setAdmission,
    setOneAdmission,
@@ -16,29 +16,29 @@ const Dropdown = ({
 }) => {
    const dispatch = useDispatch();
    const admission = useSelector(state => state.admission.admission);
-   const find_index = admission.findIndex(item => item.name === name);
-
-   // Initialize with value from Redux if available
-   const initialValue =
-      find_index !== -1 ? admission[find_index].value : placeholder;
-   const [selectedOption, setSelectedOption] = useState(initialValue);
-   const [isOpen, setIsOpen] = useState(false);
-   const [isError, setIsError] = useState(false);
 
    const dropdownRef = useRef(null);
 
-   const toggleDropdown = () => setIsOpen(prev => !prev);
+   const findIndex = admission.findIndex(item => item.name === name);
+   const reduxValue =
+      findIndex !== -1 ? admission[findIndex]?.value : undefined;
 
-   const handleClickOutside = event => {
-      if (
-         dropdownRef.current &&
-         !dropdownRef.current.contains(event.target)
-      ) {
-         setIsOpen(false);
-      }
-   };
+   const [selectedOption, setSelectedOption] = useState(
+      reduxValue ?? placeholder,
+   );
+   const [isOpen, setIsOpen] = useState(false);
+   const [isError, setIsError] = useState(false);
 
    useEffect(() => {
+      const handleClickOutside = event => {
+         if (
+            dropdownRef.current &&
+            !dropdownRef.current.contains(event.target)
+         ) {
+            setIsOpen(false);
+         }
+      };
+
       document.addEventListener('mousedown', handleClickOutside);
       return () =>
          document.removeEventListener(
@@ -47,38 +47,33 @@ const Dropdown = ({
          );
    }, []);
 
-   // Sync selectedOption with Redux
    useEffect(() => {
-      if (selectedOption !== placeholder) {
-         const idx = admission.findIndex(item => item.name === name);
-         if (idx !== -1) {
-            dispatch(
-               setOneAdmission({ name, value: selectedOption }),
-            );
-         } else {
-            dispatch(setAdmission({ name, value: selectedOption }));
-         }
-      }
-   }, [selectedOption,admission]);
+      setSelectedOption(reduxValue ?? placeholder);
+   }, [reduxValue, placeholder]);
 
-   const validateDropdown = () => {
-      if (
-         isRequired &&
-         (selectedOption === placeholder || !selectedOption)
-      ) {
+   const validateDropdown = value => {
+      if (isRequired && (value === placeholder || !value)) {
          setIsError(true);
-      } else {
-         setIsError(false);
+         return false;
       }
+      setIsError(false);
+      return true;
    };
+
    const handleOptionClick = option => {
       setSelectedOption(option);
-      onChange && onChange({ target: { name, value: option } });
       setIsOpen(false);
       setIsError(false);
+
+      const payload = { name, value: option };
+
+      if (findIndex === -1) dispatch(setAdmission(payload));
+      else dispatch(setOneAdmission(payload));
+
+      if (onChange) onChange({ target: { name, value: option } });
    };
 
-   const handleBlur = () => validateDropdown();
+   const handleBlur = () => validateDropdown(selectedOption);
 
    return (
       <div
@@ -87,7 +82,7 @@ const Dropdown = ({
       >
          <div
             tabIndex={0}
-            onClick={toggleDropdown}
+            onClick={() => setIsOpen(prev => !prev)}
             onBlur={handleBlur}
             className={`border cursor-pointer w-full flex items-center justify-between gap-2 rounded-[8px] px-4 py-3 text-xs text-[#333333] ${
                isError ? 'border-red-500' : 'border-[#A0A0A080]'
@@ -114,10 +109,11 @@ const Dropdown = ({
          </div>
 
          {isOpen && (
-            <div className='absolute z-10 overflow-hidden divide-y divide-[#D7D7D7] bg-white border border-[#A0A0A080] rounded-[8px] mt-2 w-full shadow-lg '>
+            <div className='absolute z-10 overflow-hidden divide-y divide-[#D7D7D7] bg-white border border-[#A0A0A080] rounded-[8px] mt-2 w-full shadow-lg'>
                {options.map((option, index) => (
                   <div
-                     key={index}
+                     key={`${option}-${index}`}
+                     onMouseDown={e => e.preventDefault()}
                      onClick={() => handleOptionClick(option)}
                      className='flex items-center gap-2 px-4 py-3 text-xs text-[#333333] cursor-pointer hover:bg-[#FAFAFA]'
                   >
@@ -129,7 +125,7 @@ const Dropdown = ({
                         }`}
                      >
                         {selectedOption === option && (
-                           <div className='w-2 h-2 rounded-full bg-[#333333]'></div>
+                           <div className='w-2 h-2 rounded-full bg-[#333333]' />
                         )}
                      </div>
                      {option}
@@ -145,6 +141,21 @@ const Dropdown = ({
          )}
       </div>
    );
+};
+
+Dropdown.propTypes = {
+   placeholder: PropTypes.string.isRequired,
+   options: PropTypes.arrayOf(PropTypes.string).isRequired,
+   onChange: PropTypes.func,
+   name: PropTypes.string.isRequired,
+   isRequired: PropTypes.bool,
+   errorMessage: PropTypes.string,
+};
+
+Dropdown.defaultProps = {
+   onChange: undefined,
+   isRequired: false,
+   errorMessage: 'This field is required.',
 };
 
 export default Dropdown;

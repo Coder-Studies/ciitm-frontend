@@ -1,21 +1,19 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import TableRow from '../../Atoms/Table/Tr/TableRow';
 import TableHeading from '../../Atoms/Table/Th/TableHeading';
-import PropTypes from 'prop-types';
 
 const TableRow_Heading = ({
-   TableHeadingArray = [],
+   TableHeadingArray,
    TableRowClassName,
 }) => {
-   {
-      if (TableHeadingArray.length < 0) {
-         return (
-            <h1 className='text-center text-white'>
-               Please Pass Table Array
-            </h1>
-         );
-      }
+   if (!TableHeadingArray || TableHeadingArray.length <= 0) {
+      return (
+         <h1 className='text-center text-white'>
+            Please Pass Table Array
+         </h1>
+      );
    }
+
    return (
       <TableRow Tailwind_utility_Class={TableRowClassName}>
          {TableHeadingArray.map((data, index) => (
@@ -30,7 +28,7 @@ const TableRow_Heading = ({
    );
 };
 
-TableRow_Heading.PropTypes = {
+TableRow_Heading.propTypes = {
    TableHeadingArray: PropTypes.arrayOf(
       PropTypes.shape({
          text: PropTypes.string.isRequired,
@@ -40,8 +38,9 @@ TableRow_Heading.PropTypes = {
    TableRowClassName: PropTypes.string,
 };
 
-export default TableRow_Heading;
+TableRow_Heading.defaultProps = {
+   TableHeadingArray: [],
+   TableRowClassName: '',
+};
 
-// {`text-[0.9vw] w-[${
-//     100 / TableHeadingArray.length
-//  }%] text-center text-center align-middle  border-[#322F2F]`}
+export default TableRow_Heading;

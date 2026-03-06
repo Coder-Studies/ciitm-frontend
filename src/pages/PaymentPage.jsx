@@ -1,19 +1,16 @@
-import React, { memo, useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import TitleContainer from '../components/Templates/payment/TitleContainer';
 import Summary from '../components/Templates/payment/Summary';
 import { useSelector } from 'react-redux';
 
-const PaymentPage = memo(() => {
+const PaymentPage = memo(function PaymentPage() {
    const [Student, setStudent] = useState(null);
-   const [Error, setError] = useState(false);
    const [Course, setCourse] = useState(null);
    const [Payment, setPayment] = useState(null);
    let payment = useSelector(state => state.Payment.Payment_Info);
 
    useEffect(() => {
-      if (!payment) {
-         setError(true);
-      } else {
+      if (payment) {
          setStudent(payment.student);
          setCourse(payment.course);
          setPayment(payment.fee);
@@ -34,21 +31,18 @@ const PaymentPage = memo(() => {
          Label: 'Email:',
          Value: Student?.email[0],
       },
-
       {
          Name: 'Phone',
          Placeholder: 'Your Number',
          Label: 'Number:',
          Value: Student?.contactNumber,
       },
-
       {
          Name: 'FatherName',
          Placeholder: 'Your Father Name',
          Label: 'Father Name:',
          Value: Student?.fatherName,
       },
-
       {
          Name: 'MotherName',
          Placeholder: 'Your Mother Name',
@@ -76,7 +70,6 @@ const PaymentPage = memo(() => {
                ? '₹ ' + Payment.amount_paid
                : '₹ 0',
       },
-
       {
          Name: 'Total Amount Due',
          Placeholder: 'Amount Due',
@@ -88,29 +81,6 @@ const PaymentPage = memo(() => {
       },
    ];
 
-   const Course_Info = [
-      {
-         id: 'Course_Name',
-         name: 'Course Name',
-         amount: '20$ Per Year',
-      },
-      {
-         id: 'course_Code',
-         name: 'Course Code',
-         amount: '20$ Per Year',
-      },
-      {
-         id: 'course_Duration',
-         name: 'Course Duration',
-         amount: '20$ Per Year',
-      },
-      {
-         id: 'course_Price',
-         name: 'Course Price',
-         amount: '20$ Per Year',
-      },
-   ];
-
    const fees = [
       { id: 'fee', name: 'Admission Fee', amount: ' 25,000' },
       { id: 'fee', name: '1 Year', amount: ' 50,000' },
@@ -118,6 +88,7 @@ const PaymentPage = memo(() => {
       { id: 'fee', name: '3 Year', amount: ' 50,000' },
       { id: 'fee', name: '4 Year', amount: ' 50,000' },
    ];
+
    const totalAmount = fees.reduce((sum, fee) => {
       const amount = parseFloat(fee.amount.replace(/[^0-9.-]+/g, ''));
       return sum + (isNaN(amount) ? 0 : amount);

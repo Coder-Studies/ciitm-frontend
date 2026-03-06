@@ -1,7 +1,3 @@
-import React from 'react';
-import TableRow from '../../Atoms/Table/Tr/TableRow';
-import TableData from '../../Atoms/Table/Td/TableData';
-import TableHeading from '../../Atoms/Table/Th/TableHeading';
 import StudentTableHeading from './StudentTableHeading';
 import StudentTableData from './StudentTableData';
 import PropTypes from 'prop-types';

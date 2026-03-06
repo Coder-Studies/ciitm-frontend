@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
 const ErrorModal = ({ message, onClose }) => {
    return (
@@ -31,6 +31,11 @@ const ErrorModal = ({ message, onClose }) => {
          </div>
       </div>
    );
+};
+
+ErrorModal.propTypes = {
+   message: PropTypes.string.isRequired,
+   onClose: PropTypes.func.isRequired,
 };
 
 export default ErrorModal;

@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
 const GalleryCard = ({ url }) => {
    return (
@@ -10,6 +10,10 @@ const GalleryCard = ({ url }) => {
          />
       </div>
    );
+};
+
+GalleryCard.propTypes = {
+   url: PropTypes.string.isRequired,
 };
 
 export default GalleryCard;

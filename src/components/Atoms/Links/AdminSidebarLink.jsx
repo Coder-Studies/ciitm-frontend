@@ -22,12 +22,13 @@ const AdminSidebarLink = React.memo(
    },
 );
 
-// ✅ You can still use PropTypes
 AdminSidebarLink.propTypes = {
    link: PropTypes.string.isRequired,
    icon: PropTypes.node.isRequired,
    name: PropTypes.string.isRequired,
    LinkClassName: PropTypes.string,
 };
+
+AdminSidebarLink.displayName = 'AdminSidebarLink';
 
 export default AdminSidebarLink;

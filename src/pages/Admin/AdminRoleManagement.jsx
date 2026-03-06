@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import AdminTemplate from '../../components/Templates/Admin/AdminTemplate';
 import FormTemplate_Secondary from '../../components/Templates/Admin/form/FormTemplate_Secondary';
 import Input_Primary from '../../components/Atoms/Input/Input_Primary';
@@ -32,41 +32,33 @@ const AdminRoleManagement = () => {
 
    const currentUserEmail = user?.email;
 
-   const fetchAdmins = async () => {
+   const fetchAdmins = useCallback(async () => {
       try {
          setIsLoadingAdmins(true);
          setError('');
          const token = user?.token || localStorage.getItem('token');
 
          const res = await axios.get(Get_All_Admins_EndPoint, {
-            headers: {
-               Authorization: `Bearer ${token}`,
-            },
+                headers: { Authorization: `Bearer ${token}` },
          });
 
          setAdmins(res.data.data || res.data || []);
       } catch (err) {
-         setError(
+         const msg =
             err?.response?.data?.message ||
-               err.message ||
-               'Failed to fetch admins',
-         );
-         Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text:
-               err?.response?.data?.message ||
-               err.message ||
-               'Failed to fetch admins',
-         });
+            err.message ||
+            'Failed to fetch admins';
+
+         setError(msg);
+         Swal.fire({ icon: 'error', title: 'Error', text: msg });
       } finally {
          setIsLoadingAdmins(false);
       }
-   };
+   }, [user?.token]);
 
    useEffect(() => {
       fetchAdmins();
-   }, []);
+   }, [fetchAdmins]);
 
    const handleAssignAdmin = async e => {
       e.preventDefault();
@@ -102,7 +94,9 @@ const AdminRoleManagement = () => {
          Swal.fire({
             icon: 'success',
             title: 'Success',
-            text: res.data.message || 'Admin role assigned successfully!',
+            text:
+               res.data.message ||
+               'Admin role assigned successfully!',
             confirmButtonText: 'OK',
          });
 
@@ -170,7 +164,9 @@ const AdminRoleManagement = () => {
          Swal.fire({
             icon: 'success',
             title: 'Success',
-            text: res.data.message || 'Admin access revoked successfully!',
+            text:
+               res.data.message ||
+               'Admin access revoked successfully!',
             confirmButtonText: 'OK',
          });
 
@@ -197,7 +193,7 @@ const AdminRoleManagement = () => {
          <title>Admin Role Management</title>
          <meta
             name='description'
-            content="CIITM Admin Role Management - Manage admin access and permissions."
+            content='CIITM Admin Role Management - Manage admin access and permissions.'
          />
 
          <AdminTemplate pageName='Admin Role Management'>
@@ -232,7 +228,9 @@ const AdminRoleManagement = () => {
                      </div>
 
                      {error && (
-                        <p className='text-red-500 text-sm w-full'>{error}</p>
+                        <p className='text-red-500 text-sm w-full'>
+                           {error}
+                        </p>
                      )}
 
                      <button
@@ -250,7 +248,9 @@ const AdminRoleManagement = () => {
                   w-full md:w-auto
                 '
                      >
-                        {isLoading ? 'Assigning...' : 'Assign Admin Role'}
+                        {isLoading
+                           ? 'Assigning...'
+                           : 'Assign Admin Role'}
                      </button>
                   </form>
                </FormTemplate_Secondary>
@@ -318,14 +318,17 @@ const AdminRoleManagement = () => {
                                           </span>
                                        </td>
                                        <td className='border border-[#322F2F] px-4 py-3 text-center'>
-                                          {admin.email === currentUserEmail ? (
+                                          {admin.email ===
+                                          currentUserEmail ? (
                                              <span className='text-gray-400 text-sm'>
                                                 Current User
                                              </span>
                                           ) : (
                                              <button
                                                 onClick={() =>
-                                                   handleDeleteAdmin(admin.email)
+                                                   handleDeleteAdmin(
+                                                      admin.email,
+                                                   )
                                                 }
                                                 disabled={isLoading}
                                                 className='
@@ -355,4 +358,3 @@ const AdminRoleManagement = () => {
 };
 
 export default AdminRoleManagement;
-

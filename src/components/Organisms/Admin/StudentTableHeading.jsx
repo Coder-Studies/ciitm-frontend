@@ -1,4 +1,3 @@
-import React from 'react';
 import TableRow_Heading from '../../Molecules/table/TableRow_Heading';
 import PropTypes from 'prop-types';
 

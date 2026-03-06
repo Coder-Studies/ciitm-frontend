@@ -1,5 +1,3 @@
-import React from 'react';
-
 const BankAccounts = () => {
    return (
       <div className='bg-[#FAFAFA] border-x-[0.62px] border-b-[0.62px] border-[#D7D7D79E] p-8 flex items-center justify-center'>

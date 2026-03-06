@@ -1,12 +1,12 @@
 import Navbar from './components/Organisms/NavBar/User/Navbar.jsx';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Footer from './components/Organisms/Footer/Footer.jsx';
-
-import useHomeUi from './hooks/useHomeUi.js';
 import { useEffect } from 'react';
 import socket from './config/socket.mjs';
 
 const Body = () => {
+   const location = useLocation();
+
    useEffect(() => {
       if (!socket.connected) {
          socket.connect();

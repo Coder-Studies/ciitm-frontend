@@ -1,4 +1,4 @@
-import React, { memo, useRef, useState } from 'react';
+import { memo, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import AdminTemplate from '../../components/Templates/Admin/AdminTemplate';
 import FormTemplate from '../../components/Templates/Admin/form/FormTemplate';
@@ -80,4 +80,5 @@ const ProfilePage = memo(() => {
    );
 });
 
+ProfilePage.displayName = 'ProfilePage';
 export default ProfilePage;

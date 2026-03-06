@@ -1,5 +1,5 @@
-import React from 'react';
 import StudentParent_Inputs from '../../../Organisms/Admin/StudentParent_Inputs';
+import PropTypes from 'prop-types';
 
 const StudentParentInfo = ({ data = {} }) => {
    return (
@@ -11,5 +11,16 @@ const StudentParentInfo = ({ data = {} }) => {
          />
       </div>
    );
+};
+
+StudentParentInfo.propTypes = {
+   data: PropTypes.shape({
+      FatherName: PropTypes.string,
+      MotherName: PropTypes.string,
+      GuardianNumber: PropTypes.oneOfType([
+         PropTypes.string,
+         PropTypes.number,
+      ]),
+   }),
 };
 export default StudentParentInfo;

@@ -1,6 +1,5 @@
 import React from 'react';
 import AdminTemplate from '../../components/Templates/Admin/AdminTemplate';
-import Dropdown_Primary from '../../components/Atoms/Dropdown/Dropdown_Primary';
 import FormTemplate from '../../components/Templates/Admin/form/FormTemplate';
 import EarningData_Table from '../../components/Organisms/Admin/EarningData_Table';
 import EarningData from '../../components/Organisms/Admin/EarningData';
@@ -138,7 +137,7 @@ const Earning = () => {
                   <p className=' text-red-900 text-lg'>
                      {!startDate &&
                         'Please select a Date to find Earnings.'}
-                     {error && `Error: ${error}`}
+                     {isError && error && `Error: ${error}`}
                   </p>
                </div>
             )}

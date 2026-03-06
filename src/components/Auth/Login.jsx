@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Login_EndPoint } from '../../utils/constants';
 import { Link, useNavigate } from 'react-router-dom';
 import Google_Wrapper from './Google_Wrapper';

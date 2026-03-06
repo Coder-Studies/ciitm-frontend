@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 import AdminTemplate from '../../components/Templates/Admin/AdminTemplate';
 import FormTemplate_Secondary from '../../components/Templates/Admin/form/FormTemplate_Secondary';
 import ImageUploadPreview from '../../components/Organisms/Admin/ImageUploadPreview';
+import PropTypes from 'prop-types';
 
 const DEFAULT_AVATAR =
    'https://ui-avatars.com/api/?name=Teacher&background=0D8ABC&color=fff';
@@ -80,6 +81,15 @@ const InputField = ({
       )}
    </div>
 );
+
+InputField.propTypes = {
+   label: PropTypes.string.isRequired,
+   name: PropTypes.string.isRequired,
+   register: PropTypes.func.isRequired,
+   errors: PropTypes.object.isRequired,
+   placeholder: PropTypes.string,
+   type: PropTypes.string,
+};
 
 export default function CreateTeacherPage() {
    const user = useSelector(selectUser);

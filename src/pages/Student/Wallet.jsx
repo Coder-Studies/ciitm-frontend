@@ -1,8 +1,7 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import StudentTemplate from '../../components/Templates/Admin/StudentTemplate';
 import { Bar } from 'react-chartjs-2';
 import { useNavigate } from 'react-router-dom';
-import { Chart } from 'chart.js/auto';
 
 const feeLabels = [
    'Admission Fee',

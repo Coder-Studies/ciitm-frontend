@@ -1,9 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { BiHomeSmile } from 'react-icons/bi';
 import { TbPigMoney } from 'react-icons/tb';
-import { SiCoursera } from 'react-icons/si';
 import { FaImage } from 'react-icons/fa';
 import { GoBellFill } from 'react-icons/go';
 import { PiStudentBold } from 'react-icons/pi';
@@ -72,12 +71,11 @@ const links = [
 
 const Admin_SideBar = () => {
    const menu = useSelector(state => state.menu.menu);
-   const dispatch = useDispatch();
    const sideBarRef = useRef();
 
    const isMobile = () => window.innerWidth < 1000;
 
-   const handleSidebarOpen = () => {
+   const handleSidebarOpen = useCallback(() => {
       if (isMobile()) {
          gsap.to(sideBarRef.current, {
             y: '0%',
@@ -87,9 +85,9 @@ const Admin_SideBar = () => {
             display: 'flex',
          });
       }
-   };
+   }, []);
 
-   const handleSidebarClose = () => {
+   const handleSidebarClose = useCallback(() => {
       if (isMobile()) {
          gsap.to(sideBarRef.current, {
             y: '-100%',
@@ -98,7 +96,7 @@ const Admin_SideBar = () => {
             ease: 'power3.in',
          });
       }
-   };
+   }, []);
 
    useEffect(() => {
       if (menu) {
@@ -106,12 +104,7 @@ const Admin_SideBar = () => {
       } else {
          handleSidebarClose();
       }
-   }, [menu]);
-
-   useEffect(() => {
-      if (isMobile()) {
-      }
-   }, [location.pathname]);
+   }, [menu, handleSidebarOpen, handleSidebarClose]);
 
    return (
       <div

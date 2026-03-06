@@ -1,4 +1,3 @@
-import React from 'react';
 import { IoIosCloseCircle } from 'react-icons/io';
 
 const Close_menu = () => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Circle_Image from '../../Atoms/Image/Circle_Image';
 import { FaChevronDown } from 'react-icons/fa';
 import { useSelector } from 'react-redux';

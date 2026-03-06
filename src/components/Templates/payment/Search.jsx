@@ -1,60 +1,68 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { setPayment_Info } from '../../../store/PaymentSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import ValidateUniqueIdInput from '../../Atoms/Input/ValidateUniqueIdInput';
-import { ToastContainer, toast } from 'react-toastify';
-import { set } from 'react-hook-form';
 
 const Search = () => {
    const dispatch = useDispatch();
-   const [Student_Id, setStudent_Id] = useState(null);
+
+   const [Student_Id, setStudent_Id] = useState('');
    const [getValidationStatus, setGetValidationStatus] =
       useState(false);
    const [isLoading, setIsLoading] = useState(false);
-   const payment = useSelector(state => state.Payment.Payment_Info);
 
-   let Handle_Search = async () => {
+   const Handle_Search = async () => {
+      if (!getValidationStatus || !Student_Id) return;
+      if (isLoading) return;
+
       try {
-         if (isLoading) {
-            const response = await axios.get(
-               `/api/v1/Student/FeeInfoByStudent?uniqueId=${Student_Id}`,
-            );
+         setIsLoading(true);
 
-            if (response.data.success) {
-               const data = response.data.data;
-               console.log('Payment Data:', data);
-               dispatch(setPayment_Info(data));
-            }
+         const response = await axios.get(
+            `/api/v1/Student/FeeInfoByStudent?uniqueId=${encodeURIComponent(Student_Id)}`,
+         );
+
+         if (response.data?.success) {
+            const data = response.data.data;
+            dispatch(setPayment_Info(data));
+         } else {
+            dispatch(setPayment_Info(null));
+            Swal.fire({
+               icon: 'error',
+               title: 'Error',
+               text: response.data?.message || 'No data found',
+               showConfirmButton: true,
+            });
          }
       } catch (error) {
          Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: error.response?.data?.message,
+            text:
+               error?.response?.data?.message ||
+               'Something went wrong',
             showConfirmButton: true,
          });
+      } finally {
+         setIsLoading(false);
       }
    };
 
    useEffect(() => {
       dispatch(setPayment_Info(null));
-
-      if (!payment) {
-         setIsLoading(true);
-      }
-   }, []);
+   }, [dispatch]);
 
    return (
-      <div className='Student_Id_Container w-full bg-[#FAFAFA]  p-4'>
+      <div className='Student_Id_Container w-full bg-[#FAFAFA] p-4'>
          <label htmlFor='studentId'>
             <h1 className='text-[1vw] max-[599px]:text-[3vw] font-medium mb-2 ml-1'>
                Student Id
             </h1>
          </label>
 
-         <div className='flex '>
+         <div className='flex'>
             <ValidateUniqueIdInput
                getValidationStatus={status =>
                   setGetValidationStatus(status)
@@ -64,11 +72,11 @@ const Search = () => {
             />
 
             <button
-               className='bg-green-600 ml-[2vw] p-[0.7vw] text-white rounded-md font-medium'
-               disabled={!getValidationStatus}
+               className='bg-green-600 ml-[2vw] p-[0.7vw] text-white rounded-md font-medium disabled:opacity-60'
+               disabled={!getValidationStatus || isLoading}
                onClick={Handle_Search}
             >
-               Search
+               {isLoading ? 'Searching...' : 'Search'}
             </button>
          </div>
       </div>

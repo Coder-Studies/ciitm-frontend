@@ -1,5 +1,5 @@
-import React from 'react';
 import Input_Primary from '../../Atoms/Input/Input_Primary';
+import PropTypes from 'prop-types';
 
 const UniversityInfoInputs = ({
    universityName = '',
@@ -58,6 +58,21 @@ const UniversityInfoInputs = ({
          </div>
       </div>
    );
+};
+
+UniversityInfoInputs.propTypes = {
+   universityName: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+   ]),
+   CourseName: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+   ]),
+   courseMode: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+   ]),
 };
 
 export default UniversityInfoInputs;

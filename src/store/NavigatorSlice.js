@@ -49,7 +49,7 @@ let NavigatorSlice = createSlice({
          }
       },
 
-      decreaseLimit: (state, action) => {
+      decreaseLimit: state => {
          state.navigator[0].limit -= 1;
       },
       setNavigator: (state, action) => {

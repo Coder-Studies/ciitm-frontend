@@ -11,7 +11,7 @@ import PaymentSlice from './PaymentSlice';
 import AdminUiSlice from './AdminUi';
 import InputSlice from './InputSlice';
 import NavigatorSlice from './NavigatorSlice';
-import testimonialsSlice from './Testimonials.slice'
+import testimonialsSlice from './Testimonials.slice';
 
 export const appStore = configureStore({
    reducer: {

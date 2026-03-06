@@ -1,4 +1,5 @@
 import Admin_NavBar from '../../Organisms/NavBar/Admin/AdminNavBar';
+import PropTypes from 'prop-types';
 
 import Admin_SideBar from '../../Organisms/SideBar/Admin/Admin_SideBar';
 
@@ -19,5 +20,10 @@ const AdminTemplate = ({ children, pageName }) => (
       </div>
    </div>
 );
+
+AdminTemplate.propTypes = {
+   children: PropTypes.node.isRequired,
+   pageName: PropTypes.string.isRequired,
+};
 
 export default AdminTemplate;

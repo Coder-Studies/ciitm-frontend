@@ -1,5 +1,5 @@
-import React from 'react';
 import GradeInputs from '../../../Organisms/Admin/Grade_Inputs';
+import PropTypes from 'prop-types';
 
 const StudentGradeInfo = ({ data = {} }) => {
    return (
@@ -12,6 +12,21 @@ const StudentGradeInfo = ({ data = {} }) => {
          />
       </div>
    );
+};
+
+StudentGradeInfo.propTypes = {
+   data: PropTypes.shape({
+      TenthBoardName: PropTypes.string,
+      TenthMarks: PropTypes.oneOfType([
+         PropTypes.string,
+         PropTypes.number,
+      ]),
+      TwelfthBoardName: PropTypes.string,
+      TwelfthMarks: PropTypes.oneOfType([
+         PropTypes.string,
+         PropTypes.number,
+      ]),
+   }),
 };
 
 export default StudentGradeInfo;

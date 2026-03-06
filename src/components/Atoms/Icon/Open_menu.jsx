@@ -1,8 +1,6 @@
-import React, { memo, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { MdMenu } from 'react-icons/md';
 import { toggleMenu } from '../../../store/MenuSlice';
-import { useLocation } from 'react-router-dom';
 
 const Open_menu = () => {
    const menu = useSelector(state => state.menu.menu);

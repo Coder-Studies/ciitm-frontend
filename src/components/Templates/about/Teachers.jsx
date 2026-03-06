@@ -1,10 +1,11 @@
-import React, { Suspense, useState, useEffect, memo } from 'react';
+import { Suspense, useState, useEffect, memo } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import useTeacher from '../../../hooks/useTeacher';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import PropTypes from 'prop-types';
 
 const TeacherCard = memo(({ teacher }) => {
    const social = teacher.social_media?.[0] || {};
@@ -87,6 +88,8 @@ const TeacherCard = memo(({ teacher }) => {
    );
 });
 
+TeacherCard.displayName = 'TeacherCard';
+
 const Teachers = () => {
    const teachers = useSelector(state => state.about.teacher);
    const [swiperVisible, setSwiperVisible] = useState(false);
@@ -140,4 +143,25 @@ const Teachers = () => {
    );
 };
 
+TeacherCard.propTypes = {
+   teacher: PropTypes.shape({
+      image: PropTypes.string,
+      name: PropTypes.string,
+      position: PropTypes.string,
+      Specialization: PropTypes.string,
+      Experience: PropTypes.oneOfType([
+         PropTypes.string,
+         PropTypes.number,
+      ]),
+      role: PropTypes.string,
+      social_media: PropTypes.arrayOf(
+         PropTypes.shape({
+            instagram: PropTypes.string,
+            facebook: PropTypes.string,
+            twitter: PropTypes.string,
+            linkedin: PropTypes.string,
+         }),
+      ),
+   }).isRequired,
+};
 export default Teachers;

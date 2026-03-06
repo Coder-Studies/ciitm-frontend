@@ -5,20 +5,25 @@ import { useEffect } from 'react';
 import axios from 'axios';
 
 const useTeacher = () => {
-   let teacher = useSelector(state => state.about.teacher);
-
-   let dispatch = useDispatch();
-
-   let Handle_Teacher = async () => {
-      if (!teacher) {
-         let response = await axios.get(Find_Teacher_EndPoint);
-         dispatch(setTeacher(response.data.data));
-      }
-   };
+   const teacher = useSelector(state => state.about.teacher);
+   const dispatch = useDispatch();
 
    useEffect(() => {
-      Handle_Teacher();
-   }, []);
+      const fetchTeacher = async () => {
+         try {
+            if (!teacher) {
+               const response = await axios.get(
+                  Find_Teacher_EndPoint,
+               );
+               dispatch(setTeacher(response.data.data));
+            }
+         } catch (error) {
+            console.error(error);
+         }
+      };
+
+      fetchTeacher();
+   }, [teacher, dispatch]);
 };
 
 export default useTeacher;

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import AdminTemplate from '../../components/Templates/Admin/AdminTemplate';
 import StudentPersonalInfo from '../../components/Templates/Admin/StudentView/StudentPersonalInfo';
 import FormTemplate_Secondary from '../../components/Templates/Admin/form/FormTemplate_Secondary';

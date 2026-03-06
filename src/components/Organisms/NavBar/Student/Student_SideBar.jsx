@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { AiFillDashboard } from 'react-icons/ai';
 import { FaUserGroup, FaWallet } from 'react-icons/fa6';
 import { useSelector } from 'react-redux';
 import { Link, redirect, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const Student_SideBar = ({ CustomStyle }) => {
    const [activeItem, setActiveItem] = useState('dashboard');
@@ -154,6 +155,10 @@ const Student_SideBar = ({ CustomStyle }) => {
          </div>
       </div>
    );
+};
+
+Student_SideBar.propTypes = {
+   CustomStyle: PropTypes.string,
 };
 
 export default Student_SideBar;

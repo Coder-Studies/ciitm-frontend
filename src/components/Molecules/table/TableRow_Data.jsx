@@ -1,13 +1,8 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import TableRow from '../../Atoms/Table/Tr/TableRow';
-import TableData from '../../Atoms/Table/Td/TableData';
 
-const TableRow_Data = ({
-   TableDataArray = [],
-   TableDataClassName = '',
-   TableRowClassName = '',
-}) => {
-   if (TableDataArray.length <= 0) {
+const TableRow_Data = ({ TableDataArray, TableRowClassName }) => {
+   if (!TableDataArray.length) {
       return (
          <h1 className='text-center text-white'>No data Found</h1>
       );
@@ -15,9 +10,21 @@ const TableRow_Data = ({
 
    return (
       <TableRow Tailwind_utility_Class={TableRowClassName}>
-         {TableDataArray.map((item, index) => ({ data }))}
+         {TableDataArray.map((item, index) => (
+            <TableData key={index}>{item}</TableData>
+         ))}
       </TableRow>
    );
+};
+
+TableRow_Data.propTypes = {
+   TableDataArray: PropTypes.arrayOf(PropTypes.node),
+   TableRowClassName: PropTypes.string,
+};
+
+TableRow_Data.defaultProps = {
+   TableDataArray: [],
+   TableRowClassName: '',
 };
 
 export default TableRow_Data;

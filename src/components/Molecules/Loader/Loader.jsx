@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Loader = () => {
    return (
       <div className='w-full h-screen bg-[#333] text-white flex items-center justify-center z-[99999] cursor-none fixed top-0 left-0'>

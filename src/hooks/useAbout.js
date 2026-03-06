@@ -1,5 +1,5 @@
 import socket from '../config/socket.mjs';
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setAboutPage } from '../store/AboutSlice';
 import axios from 'axios';
@@ -9,7 +9,7 @@ const useAbout = () => {
    const About = useSelector(state => state.about.aboutPage);
    const dispatch = useDispatch();
 
-   const fetchData = async () => {
+   const fetchData = useCallback(async () => {
       try {
          const response = await axios.get(frontend_EndPoint);
          const data = response.data.data;
@@ -17,7 +17,7 @@ const useAbout = () => {
       } catch (error) {
          console.error(error);
       }
-   };
+   }, [dispatch]);
 
    useEffect(() => {
       let didFallback = false;
@@ -48,19 +48,22 @@ const useAbout = () => {
          socket.emit('requestFrontend');
          socket.once('frontend', handleFrontendData);
          socket.once('connect_error', handleConnectError);
-         socket.once('disconnect', () => {
+
+         const handleDisconnect = () => {
             if (!socket.connected) {
                socket.connect();
             }
-         });
-      }
+         };
 
-      return () => {
-         socket.off('frontend', handleFrontendData);
-         socket.off('connect_error', handleConnectError);
-         socket.off('disconnect');
-      };
-   }, [About, dispatch]);
+         socket.once('disconnect', handleDisconnect);
+
+         return () => {
+            socket.off('frontend', handleFrontendData);
+            socket.off('connect_error', handleConnectError);
+            socket.off('disconnect', handleDisconnect);
+         };
+      }
+   }, [About, dispatch, fetchData]);
 };
 
 export default useAbout;

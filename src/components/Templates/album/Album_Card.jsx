@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
 const Album_Card = ({ url }) => {
    return (
@@ -12,6 +12,10 @@ const Album_Card = ({ url }) => {
          </div>
       </>
    );
+};
+
+Album_Card.propTypes = {
+   url: PropTypes.string.isRequired,
 };
 
 export default Album_Card;

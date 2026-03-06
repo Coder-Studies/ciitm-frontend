@@ -1,7 +1,6 @@
 import { memo } from 'react';
 import PropTypes from 'prop-types';
 import QuickLink from '../../Atoms/Links/QuickLink';
-import H1 from '../../Atoms/Heading/H1';
 import H3 from '../../Atoms/Heading/H3';
 
 const QuickLinkSection = ({ links }) => {

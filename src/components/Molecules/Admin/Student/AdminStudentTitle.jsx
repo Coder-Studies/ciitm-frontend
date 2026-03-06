@@ -1,5 +1,5 @@
-import React from 'react';
 import H4 from '../../../Atoms/Heading/H4';
+import PropTypes from 'prop-types';
 
 const AdminStudentTitle = ({ title }) => {
    return (
@@ -9,6 +9,10 @@ const AdminStudentTitle = ({ title }) => {
          </H4>
       </div>
    );
+};
+
+AdminStudentTitle.propTypes = {
+   title: PropTypes.string.isRequired,
 };
 
 export default AdminStudentTitle;

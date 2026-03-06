@@ -1,4 +1,4 @@
-import React, { memo, Suspense, useState } from 'react';
+import { memo, Suspense, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
@@ -8,6 +8,7 @@ import axios from 'axios';
 import { setCources } from '../../../store/AboutSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const CourseCard = memo(({ data }) => {
    return (
@@ -38,6 +39,21 @@ const CourseCard = memo(({ data }) => {
       </div>
    );
 });
+
+CourseCard.displayName = 'CourseCard';
+
+CourseCard.propTypes = {
+   data: PropTypes.shape({
+      courseName: PropTypes.string,
+      duration: PropTypes.string,
+      imageUrl: PropTypes.string,
+      _id: PropTypes.string,
+      price: PropTypes.oneOfType([
+         PropTypes.string,
+         PropTypes.number,
+      ]),
+   }).isRequired,
+};
 
 const Courses = () => {
    let [Error, setError] = useState(null);
@@ -161,5 +177,7 @@ const Courses = () => {
       </Suspense>
    );
 };
+
+Courses.displayName = 'Courses';
 
 export default Courses;

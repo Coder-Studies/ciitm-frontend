@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 
@@ -19,7 +19,7 @@ const FeePay = () => {
    const [PaymentType, setPaymentType] = useState('');
    const [error, setError] = useState('');
 
-   const fetchStudentData = async () => {
+   const fetchStudentData = useCallback(async () => {
       try {
          const res = await axios.get(
             `/api/v1/Student/FeeInfo?uniqueId=${studentId}`,
@@ -46,13 +46,13 @@ const FeePay = () => {
                'Failed to fetch student data',
          );
       }
-   };
+   }, [studentId]);
 
    useEffect(() => {
       if (isValidId) {
          fetchStudentData();
       }
-   }, [isValidId]);
+   }, [isValidId, fetchStudentData]);
 
    const handlePay = async () => {
       if (!amount || !paymentMethod || !isValidId || !studentId) {

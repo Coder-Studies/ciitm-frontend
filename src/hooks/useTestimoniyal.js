@@ -1,32 +1,27 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTestimonital } from '../store/homeSlice';
 import axios from 'axios';
 import { Testimonital_EndPoint } from '../utils/constants';
 
 const useTestimonial = () => {
-   let Testimonital = useSelector(state => state.home.Testimonital);
+   const Testimonital = useSelector(state => state.home.Testimonital);
+   const dispatch = useDispatch();
 
-   let dispatch = useDispatch();
-   const handleTestimonial = async () => {
+   const handleTestimonial = useCallback(async () => {
       try {
          if (!Testimonital) {
             const response = await axios.get(Testimonital_EndPoint);
-            console.log(
-               'Testimonial data fetched:',
-               response.data.data,
-            );
             dispatch(setTestimonital(response.data.data));
          }
-         // setTestimonials(data)
       } catch (error) {
-         console.log(error);
+         console.error(error);
       }
-   };
+   }, [Testimonital, dispatch]);
 
    useEffect(() => {
       handleTestimonial();
-   }, []);
+   }, [handleTestimonial]);
 };
 
 export default useTestimonial;

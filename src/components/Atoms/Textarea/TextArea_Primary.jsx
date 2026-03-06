@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
 const TextAreaPrimary = ({
    placeholder,
@@ -16,6 +16,14 @@ const TextAreaPrimary = ({
          className={className}
       />
    );
+};
+
+TextAreaPrimary.propTypes = {
+   placeholder: PropTypes.string,
+   value: PropTypes.string,
+   readOnly: PropTypes.bool,
+   className: PropTypes.string,
+   onInput: PropTypes.func,
 };
 
 export default TextAreaPrimary;
