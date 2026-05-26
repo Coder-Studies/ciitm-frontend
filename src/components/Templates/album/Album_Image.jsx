@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState, Suspense, lazy } from 'react';
+import React, { useEffect, useState, Suspense, lazy, memo } from 'react';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useDispatch, useSelector } from 'react-redux';
@@ -49,12 +49,12 @@ const Album_Image = () => {
    return (
       <div className='max-w-screen h-full flex flex-wrap items-center justify-center bg-[#f5f1f1] gap-[2vw] max-[421px]:gap-[4vw] py-[15vh] px-[2vw] max-[421px]:px-[4vw] shrink'>
          <Suspense fallback={<div>Loading...</div>}>
-            {Image.map((item, index) => {
-               return <Album_Card key={index} url={item.url} />;
+            {Image.map((item) => {
+               return <Album_Card key={item.id || item.url} url={item.url} />;
             })}
          </Suspense>
       </div>
    );
 };
 
-export default Album_Image;
+export default memo(Album_Image);

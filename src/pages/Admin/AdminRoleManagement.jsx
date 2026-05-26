@@ -300,7 +300,7 @@ const AdminRoleManagement = () => {
                               <tbody>
                                  {admins.map((admin, index) => (
                                     <tr
-                                       key={index}
+                                       key={admin.email || index}
                                        className='text-white hover:bg-[#2B2C2B] transition-colors'
                                     >
                                        <td className='border border-[#322F2F] px-4 py-3'>

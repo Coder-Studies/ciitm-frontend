@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { useSelector } from 'react-redux';
 import P4 from '../../Atoms/Paragraph/P4';
 import H5 from '../../Atoms/Heading/H5';
@@ -48,6 +48,7 @@ const Skills = () => {
                   <img
                      src={item.image}
                      alt={item.title || 'Goal Image'}
+                     loading='lazy'
                      className='object-cover w-full h-full rounded-full'
                   />
                </div>
@@ -63,4 +64,4 @@ const Skills = () => {
    );
 };
 
-export default Skills;
+export default memo(Skills);

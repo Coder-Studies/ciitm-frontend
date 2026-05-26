@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { MdStar } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import { MdDelete } from 'react-icons/md';
@@ -114,4 +114,4 @@ const TestimonialPrimaryCard = ({
    );
 };
 
-export default TestimonialPrimaryCard;
+export default memo(TestimonialPrimaryCard);

@@ -50,18 +50,20 @@ const Summary = ({ heading, duration, feesList, description }) => {
             {feesList
                .filter(fee => fee.id === 'fee')
                .map((fee, index) => (
-                  <Fees key={index} fee={fee} />
+                  <Fees key={fee.id || fee._id || index} fee={fee} />
                ))}
          </div>
          <div className='Total py-4'>
             {feesList
                .filter(fee => fee.id === 'total')
                .map((fee, index) => (
-                  <Fees key={index} fee={fee} />
+                  <Fees key={fee.id || fee._id || index} fee={fee} />
                ))}
          </div>
       </div>
    );
 };
 
-export default Summary;
+import { memo } from 'react';
+
+export default memo(Summary);

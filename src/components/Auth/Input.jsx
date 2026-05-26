@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setInput, UpdateInput } from '../../store/AuthSlice';
 
@@ -14,12 +14,14 @@ const Input = ({ type, placeholder, label, id, name }) => {
       return null;
    }
 
-   let Find_Login_CheckBox = array.find(
-      item => item.name === 'Login_CheckBox',
+   const Find_Login_CheckBox = useMemo(
+      () => array.find(item => item.name === 'Login_CheckBox'),
+      [array],
    );
 
-   let Find_SignUp_CheckBox = array.find(
-      item => item.name === 'Sign_UP_CHECK',
+   const Find_SignUp_CheckBox = useMemo(
+      () => array.find(item => item.name === 'Sign_UP_CHECK'),
+      [array],
    );
 
    useEffect(() => {
@@ -31,24 +33,31 @@ const Input = ({ type, placeholder, label, id, name }) => {
       }
    }, [Find_Login_CheckBox, Find_SignUp_CheckBox]);
 
-   let find_index = array.findIndex(item => item.name === Name);
+   const find_index = useMemo(
+      () => array.findIndex(item => item.name === Name),
+      [array, Name],
+   );
 
-   let dispatch = useDispatch();
+   const dispatch = useDispatch();
 
-   let handleInput = e => {
-      setValue(e.target.value);
+   const handleInput = useCallback(
+      e => {
+         const val = e.target.value;
+         setValue(val);
 
-      let data = {
-         name: Name,
-         value: e.target?.value,
-      };
+         const data = {
+            name: Name,
+            value: val,
+         };
 
-      if (find_index !== -1) {
-         dispatch(UpdateInput(data));
-      } else {
-         dispatch(setInput(data));
-      }
-   };
+         if (find_index !== -1) {
+            dispatch(UpdateInput(data));
+         } else {
+            dispatch(setInput(data));
+         }
+      },
+      [Name, find_index, dispatch],
+   );
 
    let Handle_Unchacked = () => {
       if (Login_Checkbox === true) {
