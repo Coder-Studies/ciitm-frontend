@@ -88,13 +88,13 @@ const Navbar = () => {
                      </button>
                      {isDropdownOpen && (
                         <div className='absolute bg-white text-black shadow rounded w-40'>
-                           <NavLink
+                           {/* <NavLink
                               to='/admission'
                               onClick={() => setIsMenuOpen(false)}
                               className='block px-4 py-2'
                            >
                               Admission
-                           </NavLink>
+                           </NavLink> */}
                            <NavLink
                               to='/status'
                               onClick={() => setIsMenuOpen(false)}
