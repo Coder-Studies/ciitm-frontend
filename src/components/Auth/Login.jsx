@@ -147,14 +147,14 @@ const Login = () => {
                   <Google_Wrapper text='Sign In With Google' />
                </button>
 
-               <div className='w-full flex items-center justify-end'>
+               {/* <div className='w-full flex items-center justify-end'>
                   <p className='text-[1.05vw] font-semibold mt-4 max-[999px]:text-[3.05vw]'>
                      Registered?{' '}
                      <Link to='/signup' className='text-[#FF6603]'>
                         Create an Account
                      </Link>
                   </p>
-               </div>
+               </div> */}
             </form>
          </div>
 
